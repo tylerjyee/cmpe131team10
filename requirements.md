@@ -30,9 +30,9 @@
 5. User will enter “create account”
 - **Primary Postconditions:** User has created an account and has access to email
 - **Alternate Sequence:**
-1. User enters a username but not a password \n
+1. User enters a username but not a password
 a. Prompt user to enter password
-2. User passwords don’t match \n
+2. User passwords don’t match
 a. Prompt user that passwords don’t match
 
 
