@@ -30,12 +30,12 @@
 5. User will enter “create account”
 - **Primary Postconditions:** User has created an account and has access to email
 - **Alternate Sequence:**
-1. User enters a username but not a password
+1. User enters a username but not a password \n
 a. Prompt user to enter password
-2. User passwords don’t match
-b. Prompt user that passwords don’t match
+2. User passwords don’t match \n
+a. Prompt user that passwords don’t match
 
-  
+
 3. Use Case Name (Should match functional requirement name)
 - **Pre-condition:** <can be a list or short description> Lorem ipsum dolor sit
 amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore
