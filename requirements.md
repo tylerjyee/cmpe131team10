@@ -1,7 +1,6 @@
-## <remove all of the example text and notes in < > such as this one>
 ## Functional Requirements
-1. requirement
-2. requirement
+1. Register
+2. Login
 3. requirement
 4. requirement
 5. requirement
@@ -12,13 +11,32 @@
 10. requirement
 11. requirement
 12. requirement
+
 ## Non-functional Requirements
 1. non-functional
 2. non-functional
 3. non-functional
 4. non-functional
+
 ## Use Cases
-1. Use Case Name (Should match functional requirement name)
+1. Register
+- **Pre-condition:** Assumed on website home page
+- **Trigger:** Select register account button
+- **Primary Sequence:**
+1. User will select “create account”
+2. System prompt user to enter username and password
+3. User will enter desired username and password
+4. User will confirm password
+5. User will enter “create account”
+- **Primary Postconditions:** User has created an account and has access to email
+- **Alternate Sequence:**
+1. User enters a username but not a password
+a. Prompt user to enter password
+2. User passwords don’t match
+b. Prompt user that passwords don’t match
+
+  
+3. Use Case Name (Should match functional requirement name)
 - **Pre-condition:** <can be a list or short description> Lorem ipsum dolor sit
 amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore
 magna aliqua.
