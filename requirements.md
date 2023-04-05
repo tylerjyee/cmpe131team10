@@ -35,6 +35,8 @@ a. Prompt user to enter password
 2. User passwords don’t match
 a. Prompt user that passwords don’t match
 
+
+
 2. Use Case 2: Login
 - **Pre-condition:** Assumed User has an account already
 - **Trigger:** Clicking login button
