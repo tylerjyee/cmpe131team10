@@ -35,7 +35,25 @@ a. Prompt user to enter password
 2. User passwords don’t match
 a. Prompt user that passwords don’t match
 
-
+3. Login
+- **Pre-condition:** Assumed User has an account already
+- **Trigger:** Clicking login button
+- **Primary Sequence:**
+1. User selects “Login” button
+2. System prompts user to enter username and password
+3. User enters username and password
+4. User press “Sign in” button
+5. System logs in user to appropriate account page
+- **Primary Postconditions:** User is logged into their email page
+- **Alternate Sequence:**
+1. User doesn’t have account
+a. System prompts user that account not found and to make account
+2. Username incorrect
+a. System prompts user that “username or password incorrect”
+3. Password incorrect
+a. System prompts user that “username or password incorrect”
+  
+  
 3. Use Case Name (Should match functional requirement name)
 - **Pre-condition:** <can be a list or short description> Lorem ipsum dolor sit
 amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore
