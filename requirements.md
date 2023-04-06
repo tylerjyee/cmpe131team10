@@ -1,7 +1,7 @@
 ## Functional Requirements
 1. Register
 2. Login
-3. requirement
+3. Compose Email
 4. requirement
 5. requirement
 6. requirement
@@ -52,8 +52,27 @@ a. System prompts user that account not found and to make account
 a. System prompts user that “username or password incorrect”
 3. Password incorrect
 a. System prompts user that “username or password incorrect”
-  
-  
+
+### Use Case 3: Compose Email
+- **Pre-condition:** User must have an email account.
+- **Trigger:** Select “Compose” button
+- **Primary Sequence:**
+1. User will select “compose email”
+2. System prompt user with text box to enter message to send to recipient
+3. User will enter recipient email
+4. User will enter subject
+5. User will select “send email”
+- **Primary Postconditions:** User would be able to write and send an email
+- **Alternate Sequence:** 
+1. User doesn’t enter recipient email
+a. System display no recipient is entered
+2. User enters an invalid email address
+a. System display recipient is not found
+3. User forgets to enter subject
+a. System displays no subject
+4. User doesn’t enter contents of email
+a. System displays that email is empty
+
 3. Use Case Name (Should match functional requirement name)
 - **Pre-condition:** <can be a list or short description> Lorem ipsum dolor sit
 amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore
