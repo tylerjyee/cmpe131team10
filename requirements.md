@@ -19,7 +19,7 @@
 4. non-functional
 
 ## Use Cases
-### Use Case 1: Register
+#### Use Case 1: Register
 - **Pre-condition:** Assumed on website home page
 - **Trigger:** Select register account button
 - **Primary Sequence:**
@@ -35,9 +35,7 @@ a. Prompt user to enter password
 2. User passwords don’t match
 a. Prompt user that passwords don’t match
 
-
-
-### Use Case 2: Login
+#### Use Case 2: Login
 - **Pre-condition:** Assumed User has an account already
 - **Trigger:** Clicking login button
 - **Primary Sequence:**
