@@ -73,7 +73,7 @@ a. System displays no subject
 4. User doesn’t enter contents of email
 a. System displays that email is empty
 
-3. Use Case Name (Should match functional requirement name)
+### Use Case Name (Should match functional requirement name)
 - **Pre-condition:** <can be a list or short description> Lorem ipsum dolor sit
 amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore
 magna aliqua.
