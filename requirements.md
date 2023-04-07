@@ -5,9 +5,9 @@
 4. requirement
 5. requirement
 6. requirement
-7. requirement
-8. requirement
-9. requirement
+7. todo list
+8. start chat 
+9. delete chat
 10. requirement
 11. requirement
 12. requirement
