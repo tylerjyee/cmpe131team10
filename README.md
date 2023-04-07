@@ -1,5 +1,5 @@
 # Gmail Ripoff
 - Tyler Yee (@tylerjyee)
-- Name (@username)
+- Liza Podkamenna (@lizapodk)
 - Name (@username)
 - Name (@username)
