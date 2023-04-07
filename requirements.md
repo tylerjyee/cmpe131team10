@@ -13,8 +13,8 @@
 12. requirement
 
 ## Non-functional Requirements
-1. non-functional
-2. non-functional
+1. response time within (x seconds)
+2. works on any browser
 3. non-functional
 4. non-functional
 
