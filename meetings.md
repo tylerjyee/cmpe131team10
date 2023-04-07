@@ -5,11 +5,12 @@
 end of the semester.
 - Write at least 1 meeting per week until the end of the semester
 ## Meetings
-### 2022-04-15 at 13:30
+### 2022-04-16 at 10:00
 <meeting template would go here>
 <only fill in template once you had the meeting>
 <see example on the last date>
 <use date format YYYY-MM-DD at HH:MM>
+  
 ### 2022-04-22 at 10:30
 <meeting template would go here>
 <only fill in template once you had the meeting>
