@@ -15,8 +15,8 @@
 ## Non-functional Requirements
 1. response time within (x seconds)
 2. works on any browser
-3. non-functional
-4. non-functional
+3. different languages
+4. nice UI
 
 ## Use Cases
 ### Use Case 1: Register
