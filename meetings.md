@@ -1,12 +1,6 @@
-## Instructions
-- Delete this block before adding to your repository.
-- Delete any instructions you see below they will be within < >
-- This schedule should reflect the meetings from the start of the project until the
-end of the semester.
-- Write at least 1 meeting per week until the end of the semester
 ## Meetings
-### 2022-04-16 at 10:00
-- Who attended the meeting
+### 2022-04-09 at 12:00
+- Discord call, everyone in the group attended 
 - Team updates (15min or less)
 <Each team member gives an update of what they did from the last meeting and what
 they plan to do next. If they are stuck, bring it up here to see if others can
