@@ -1,6 +1,15 @@
 ## Meetings
 ### 2022-04-09 at 12:00
-- Discord call, everyone in the group attended 
+- Physical Meetup, everyone attended
+- Team updates: Everyone got assigned requirements to write use cases for. Also decided 
+meeting schedule and team lead.
+- Tyler worked on functional requirements 1-3
+- Lisa worked on functional requirements 4-6
+- Phillip worked on functional requirements 7-9
+- Tayhun worked on functional requirements 10-12
+- Summarize group progress: Overall group started to work on the use cases for each requirement
+### 2022-04-16 at 10:00
+- Meeting Call 
 - Team updates (15min or less)
 <Each team member gives an update of what they did from the last meeting and what
 they plan to do next. If they are stuck, bring it up here to see if others can
