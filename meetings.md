@@ -6,7 +6,7 @@ meeting schedule and team lead.
 - Tyler worked on functional requirements 1-3
 - Lisa worked on functional requirements 4-6
 - Phillip worked on functional requirements 7-9
-- Tayhun worked on functional requirements 10-12
+- Taehun worked on functional requirements 10-12
 - Summarize group progress: Overall group started to work on the use cases for each requirement
 ### 2022-04-16 at 10:00
 - Meeting Call 
