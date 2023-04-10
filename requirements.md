@@ -123,3 +123,43 @@ a. System displays that email is empty
 - **Alternate Sequence:**
 1. User changes some information, but does not save and exit to another page
 2. System cancels the changes and goes back to the original profile
+
+### Use Case 7: To-Do List
+- **Pre-condition:** user already signed in
+- **Trigger:** todo list button
+- **Primary Sequence:**
+1. User will select “todo list”
+2. System prompt user to enter todo item
+3. System prompts user to save todo item
+- **Primary Postconditions:** User will be able to see their todo list
+1. System will order items based on sequential order
+2. User checks off item when done
+- **Alternate Sequence:**
+1. User doesn’t save todo item
+2. Prompt user todo item has not been saved
+
+### Use Case 8: Start chat
+- **Pre-condition:** user already signed in
+- **Trigger:** hover over chat and click on it
+- **Primary Sequence:**
+1. User will select a chat to create
+2. system prompts the user to enter the recipient's name
+3. system prompts the user a chat interface
+- **Primary Postconditions:** User is able to interact with a chat window
+1. User can see each person they are chatting to
+- **Alternate Sequence:**
+1. User does not have any contacts to start chatting with
+2. Prompt user chat cannot be created
+
+### Use Case 9: Delete Chat
+- **Pre-condition:** user has a chat created
+- **Trigger:** hover over chat and click on it
+- **Primary Sequence:**
+1. User is able to delete a chat 
+2. system prompts user if they want to delete the chat
+3. system prompts the user with a confirmation
+- **Primary Postconditions:** User is able to delete the chat window
+1. User can see the deleted chat
+- **Alternate Sequence:**
+1. User does not have any contacts to start chatting with
+2. Prompt user chat cannot be deleted
