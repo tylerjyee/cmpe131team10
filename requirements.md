@@ -8,7 +8,7 @@
 7. todo list
 8. start chat 
 9. delete chat
-10. requirement
+10. flag email
 11. requirement
 12. requirement
 
@@ -163,3 +163,46 @@ a. System displays that email is empty
 - **Alternate Sequence:**
 1. User does not have any contacts to start chatting with
 2. Prompt user chat cannot be deleted
+
+### Use Case 10: Flag email
+- **Pre-condition:** User aleady signed in and have at least one email in inbox
+- **Trigger:** Click flag icon
+- **Primary Sequence:**
+1. User will select an email to flag
+2. User will click on flag icon
+3. System will then light up the flag icon
+4. System will put the flagged email to the very top of inbox
+- **Primary Postconditions:** User is able to mark particular emails
+- **Alternate Sequence:**
+1. User misclicks flag icon.
+2. System would open the email that was clicked
+
+### Use Case 11: Forgot password
+- **Pre-condition:** User aleady signed up and have an existing account in the system
+- **Trigger:** Clicks forgot password button
+- **Primary Sequence:**
+1. User will select "forgot password" in the log-in page.
+2. System prompt user to enter username
+3. System will search dictionary of usernames for match
+4. A match will have user change password
+5. User will enter a new passowrd and re-enter the new password to confirm
+6. System will update the account with the new password
+- **Primary Postconditions:** User is able to update the account with a new password
+- **Alternate Sequence:**
+1. User enters an incorrect username 
+2. System prompts user that the incorrect username is not found
+
+### Use Case 12: Read email
+- **Pre-condition:** User aleady signed up and have at least one email in inbox
+- **Trigger:** Clicks an unread email with bold letter
+- **Primary Sequence:**
+1. User selects an unread email to read in inbox
+2. User clicks on the title of the unread email
+3. System will open the email and show the message of the selceted email 
+- **Primary Postconditions:** System will display the message of email and change the title of the email from bold letter to normal letter
+- **Alternate Sequence:**
+1. User misclicks on a flag icon
+2. System will light up the flag icon
+3. System will display the flagged email to the very top of email list
+
+
