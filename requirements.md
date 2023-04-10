@@ -1,16 +1,16 @@
 ## Functional Requirements
-1. Register
-2. Login
-3. Compose Email
-4. Delete Email
-5. Search Emails
-6. Edit User Profile
-7. todo list
-8. start chat 
-9. delete chat
-10. flag email
-11. Forgot password
-12. Read email
+1. Register (Tyler)
+2. Login (Tyler)
+3. Compose Email (Tyler)
+4. Delete Email (Lisa)
+5. Search Emails (Lisa)
+6. Edit User Profile (Lisa)
+7. todo list (Phillip)
+8. start chat (Phillip)
+9. delete chat (Phillip)
+10. flag email (Taehun)
+11. Forgot password (Taehun)
+12. Read email (Taehun)
 
 ## Non-functional Requirements
 1. response time within (x seconds)
