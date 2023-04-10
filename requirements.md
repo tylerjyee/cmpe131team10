@@ -32,6 +32,7 @@
 - **Alternate Sequence:**
 1. User enters a username but not a password
 a. Prompt user to enter password
+- **Alternate Sequence:**
 2. User passwords don’t match
 a. Prompt user that passwords don’t match
 
@@ -48,8 +49,10 @@ a. Prompt user that passwords don’t match
 - **Alternate Sequence:**
 1. User doesn’t have account
 a. System prompts user that account not found and to make account
+- **Alternate Sequence:**
 2. Username incorrect
 a. System prompts user that “username or password incorrect”
+- **Alternate Sequence:**
 3. Password incorrect
 a. System prompts user that “username or password incorrect”
 
@@ -66,10 +69,13 @@ a. System prompts user that “username or password incorrect”
 - **Alternate Sequence:** 
 1. User doesn’t enter recipient email
 a. System display no recipient is entered
+- **Alternate Sequence:**
 2. User enters an invalid email address
 a. System display recipient is not found
+- **Alternate Sequence:**
 3. User forgets to enter subject
 a. System displays no subject
+- **Alternate Sequence:**
 4. User doesn’t enter contents of email
 a. System displays that email is empty
 
