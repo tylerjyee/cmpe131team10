@@ -104,16 +104,16 @@ a. System displays that email is empty
 
 ### Use Case 6: Edit Profile
 - **Pre-condition:** User must be logged in
-- **Trigger:** Select "Search" button
+- **Trigger:** Select "Edit Profile" button
 - **Primary Sequence:**
-1. User will select search email
-2. System prompts user to enter keywords
-3. System will search through the user's inbox for a match
-4. System will display all matches for the keywords
-- **Primary Postconditions:** User would be able to find an email with the keywords entered 
+1. User will select edit profile 
+2. User is able to change the name, password, profile picture
+3. User selects to save changes
+- **Primary Postconditions:** User would be able to see the changes to their profile
 - **Alternate Sequence:**
-1. User does not enter keywords that are in email
-2. System prompts the user that keyword has not been found
+1. User does not commit any changes and presses cancel
+2. System prompts the user to confirm to cancel
+3. User confirms
 - **Alternate Sequence:**
-1. User enters a search that is too long
-2. System prompts the user that the search is experiencing heavy loading times
+1. User changes some information, but does not save and exit to another page
+2. System cancels the changes and goes back to the original profile
