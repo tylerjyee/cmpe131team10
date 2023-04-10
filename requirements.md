@@ -9,8 +9,8 @@
 8. start chat 
 9. delete chat
 10. flag email
-11. requirement
-12. requirement
+11. Forgot password
+12. Read email
 
 ## Non-functional Requirements
 1. response time within (x seconds)
