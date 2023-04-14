@@ -11,6 +11,10 @@ meeting schedule and team lead.
 ### 2022-04-14 at 11:55
 - Physical Meeting, Everyone attended
 - Team updates: Everyone got assigned requirements to implement for milestone 2
+- Taehun: Login, logout, create user, and delete account
+- Phillip: todo list, start chat, delete chat
+- Tyler: compose email, flag, forgot password
+- Lisa: delete email, edit profle, search email
 - Summarize group progress: Group was clear on what needs to be done. We agreed to get it done by 4/23 so we have time to debug.
 ### 2022-04-23 at 10:00
 - Who attended the meeting
