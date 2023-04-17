@@ -4,7 +4,7 @@
 - Team updates: Everyone got assigned requirements to write use cases for. Also decided 
 meeting schedule and team lead.
 - Tyler worked on functional requirements 1-3
-- Lisa worked on functional requirements 4-6
+- Liza worked on functional requirements 4-6
 - Phillip worked on functional requirements 7-9
 - Taehun worked on functional requirements 10-12
 - Summarize group progress: Overall group started to work on the use cases for each requirement
@@ -14,7 +14,7 @@ meeting schedule and team lead.
 - Taehun: Login, logout, create user, and delete account
 - Phillip: todo list, start chat, delete chat
 - Tyler: compose email, flag, forgot password
-- Lisa: delete email, edit profle, search email
+- Liza: delete email, edit profle, search email
 - Summarize group progress: Group was clear on what needs to be done. We agreed to get it done by 4/23 so we have time to debug.
 ### 2022-04-23 at 10:00
 - Who attended the meeting
