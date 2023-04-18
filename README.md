@@ -8,7 +8,7 @@
 ### Title: Email and Chat Website
 
 ### Ethical Implications
-The application we are making allows a user to email users with
+The application we are making allows a user to email other users securly keeping messages and action within an internal system.
 
 
 ### Implementation
