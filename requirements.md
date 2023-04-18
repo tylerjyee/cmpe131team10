@@ -124,19 +124,26 @@ a. System displays that email is empty
 1. User changes some information, but does not save and exit to another page
 2. System cancels the changes and goes back to the original profile
 
-### Use Case 7: To-Do List
+### Use Case 7: Create To-Do List
 - **Pre-condition:** user already signed in
-- **Trigger:** todo list button
+- **Trigger:** User selects "create todo list" button
 - **Primary Sequence:**
-1. User will select “todo list”
-2. System prompt user to enter todo item
-3. System prompts user to save todo item
-- **Primary Postconditions:** User will be able to see their todo list
-1. System will order items based on sequential order
-2. User checks off item when done
+1. User will select “create todo list”
+2. System prompt user to enter todo list item
+3. User will enter todo list item
+4. System prompts user to save todo item
+- **Primary Postconditions:** User will be able to see their created todo list
+6. System will order items based on sequential order
+7. User checks off item when done
 - **Alternate Sequence:**
-1. User doesn’t save todo item
-2. Prompt user todo item has not been saved
+8. User doesn’t save todo item
+9. Prompt user todo item has not been saved
+- **Alternate Sequence:**
+10. User wants to add todo lists on to existing list
+11. Prompt user with edit list button
+- **Alternate Sequence:**
+13. User wants more than one todo list
+14. User is able to create a new list by hitting the "create todo list" again
 
 ### Use Case 8: Start chat
 - **Pre-condition:** user already signed in
