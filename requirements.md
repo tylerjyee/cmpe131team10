@@ -2,21 +2,21 @@
 1. Register (Tyler)
 2. Login (Tyler)
 3. Compose Email (Tyler)
-4. Delete Email (Liza)
+4. Delete & Flag Email (Liza)
 5. Search Emails (Liza)
 6. Edit User Profile (Liza)
 7. todo list (Phillip)
 8. start chat (Phillip)
 9. delete chat (Phillip)
-10. flag email (Taehun)
+10.  (Taehun)
 11. Forgot password (Taehun)
-12. Read email (Taehun)
+12. (Taehun)
 
 ## Non-functional Requirements
-1. response time within (x seconds)
+1. response time within (5 seconds)
 2. works on any browser
-3. different languages
-4. nice UI
+3. read email
+4. different fonts
 
 ## Use Cases
 ### Use Case 1: Register
@@ -79,18 +79,23 @@ a. System displays no subject
 4. User doesn’t enter contents of email
 a. System displays that email is empty
 
-### Use Case 4: Delete Email
-- **Pre-condition:** User must have the email to delete
-- **Trigger:** Select the email, click delete
+### Use Case 4: Delete & Flag Email
+- **Pre-condition:** User must have the email in inbox
+- **Trigger:** Select the email, click delete or flag
 - **Primary Sequence:**
-1. User will select email
-2. User will then select the delete button
-3. System prompt user warning deleting of email
-4. User confirms
-- **Primary Postconditions:** User would be able to delete an email
+1. User will select email from email
+2. User will then select the delete or flag button
+3. If deleting email, the system prompts the user warning deleting of email
+4. User confirms to delete email
+5. If flagging email, system will display highlighted flag on email
+6. System puts flagged email at the top of the inbox
+- **Primary Postconditions:** User would be able to delete or flag an email
 - **Alternate Sequence:**
-1. User clicks away before confirming to delete the email
-2. System would reset and the email remains in inbox
+7. User clicks away before confirming to delete the email
+8. System would reset and the email remains in inbox
+- **Alternate Sequence:**
+9. User misclicks flag icon.
+10. System would open the email that was clicked
 
 ### Use Case 5: Search Emails
 - **Pre-condition:** User must be logged in
@@ -129,25 +134,27 @@ a. System displays that email is empty
 - **Trigger:** User selects "create todo list" button
 - **Primary Sequence:**
 1. User will select “create todo list”
-2. System prompt user to enter todo list item
-3. User will enter todo list item
-4. System prompts user to save todo item
+2. System prompts user to name list
+3. User will enter todo list name
+4. System prompt user to enter todo list item
+5. User will enter todo list item
+6. System prompts user to save todo item
 - **Primary Postconditions:** User will be able to see their created todo list
-6. System will order items based on sequential order
-7. User checks off item when done
+7. System will order items based on sequential order
+8. User checks off item when done
 - **Alternate Sequence:**
-8. User doesn’t save todo item
-9. Prompt user todo item has not been saved
+9. User doesn’t save todo item
+10. Prompt user todo item has not been saved
 - **Alternate Sequence:**
-10. User wants to add todo lists on to existing list
-11. Prompt user with edit list button
+11. User wants to add todo lists on to existing list
+12. Prompt user with edit list button
 - **Alternate Sequence:**
 13. User wants more than one todo list
 14. User is able to create a new list by hitting the "create todo list" again
 
 ### Use Case 8: Start chat
 - **Pre-condition:** user already signed in
-- **Trigger:** hover over chat and click on it
+- **Trigger:** select "start chat" button
 - **Primary Sequence:**
 1. User will select a chat to create
 2. system prompts the user to enter the recipient's name
@@ -171,19 +178,6 @@ a. System displays that email is empty
 1. User does not have any contacts to start chatting with
 2. Prompt user chat cannot be deleted
 
-### Use Case 10: Flag email
-- **Pre-condition:** User aleady signed in and have at least one email in inbox
-- **Trigger:** Click flag icon
-- **Primary Sequence:**
-1. User will select an email to flag
-2. User will click on flag icon
-3. System will then light up the flag icon
-4. System will put the flagged email to the very top of inbox
-- **Primary Postconditions:** User is able to mark particular emails
-- **Alternate Sequence:**
-1. User misclicks flag icon.
-2. System would open the email that was clicked
-
 ### Use Case 11: Forgot password
 - **Pre-condition:** User aleady signed up and have an existing account in the system
 - **Trigger:** Clicks forgot password button
@@ -199,17 +193,6 @@ a. System displays that email is empty
 1. User enters an incorrect username 
 2. System prompts user that the incorrect username is not found
 
-### Use Case 12: Read email
-- **Pre-condition:** User aleady signed up and have at least one email in inbox
-- **Trigger:** Clicks an unread email with bold letter
-- **Primary Sequence:**
-1. User selects an unread email to read in inbox
-2. User clicks on the title of the unread email
-3. System will open the email and show the message of the selceted email 
-- **Primary Postconditions:** System will display the message of email and change the title of the email from bold letter to normal letter
-- **Alternate Sequence:**
-1. User misclicks on a flag icon
-2. System will light up the flag icon
-3. System will display the flagged email to the very top of email list
+
 
 
