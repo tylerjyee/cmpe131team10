@@ -8,8 +8,8 @@
 7. todo list (Phillip)
 8. start chat (Phillip)
 9. delete chat (Phillip)
-10.  (Taehun)
-11. Forgot password (Taehun)
+10. Forgot password (Taehun)
+11.  (Taehun)
 12. (Taehun)
 
 ## Non-functional Requirements
@@ -118,16 +118,18 @@ a. System displays that email is empty
 - **Trigger:** Select "Edit Profile" button
 - **Primary Sequence:**
 1. User will select edit profile 
-2. User is able to change the name, password, profile picture
-3. User selects to save changes
+2. System prompts user with fields to change to their profile such as name, username, password, or profile picture
+3. User fills in all of the fields they want to change on their account
+4. System prompts user to save changes to profile
+5. User selects to save changes
 - **Primary Postconditions:** User would be able to see the changes to their profile
 - **Alternate Sequence:**
-1. User does not commit any changes and presses cancel
-2. System prompts the user to confirm to cancel
-3. User confirms
+6. User does not commit any changes and presses cancel
+7. System prompts the user to confirm to cancel
+8. User confirms
 - **Alternate Sequence:**
-1. User changes some information, but does not save and exit to another page
-2. System cancels the changes and goes back to the original profile
+9. User changes some information, but does not save and exit to another page
+10. System cancels the changes and goes back to the original profile
 
 ### Use Case 7: Create To-Do List
 - **Pre-condition:** user already signed in
@@ -156,29 +158,38 @@ a. System displays that email is empty
 - **Pre-condition:** user already signed in
 - **Trigger:** select "start chat" button
 - **Primary Sequence:**
-1. User will select a chat to create
+1. User will select "start chat"
 2. system prompts the user to enter the recipient's name
-3. system prompts the user a chat interface
-- **Primary Postconditions:** User is able to interact with a chat window
-1. User can see each person they are chatting to
+3. User enters recipient name
+4. System prompts user to enter short message to other user
+5. user enters short message
+6. System prompts user with send button
+7. User clicks send to send chat message
+- **Primary Postconditions:** User chat message is sent to other user
 - **Alternate Sequence:**
-1. User does not have any contacts to start chatting with
-2. Prompt user chat cannot be created
+8. User does not enter recipient
+9. system prompt user recipient has not been entered
+- **Alternate Sequence:**
+10. User does not enter any chat message
+11. Prompt user chat box is empty
 
 ### Use Case 9: Delete Chat
-- **Pre-condition:** user has a chat created
-- **Trigger:** hover over chat and click on it
+- **Pre-condition:** user has an existing chat
+- **Trigger:** click on "delete chat" button for respective chat
 - **Primary Sequence:**
-1. User is able to delete a chat 
-2. system prompts user if they want to delete the chat
-3. system prompts the user with a confirmation
-- **Primary Postconditions:** User is able to delete the chat window
-1. User can see the deleted chat
+1. User clicks on chat that they want to delete
+2. User clicks on "delete chat" button
+3. System prompts user that they are deleting chat and to confirm 
+4. User confirms by selecting yes
+- **Primary Postconditions:** User deletes chat
 - **Alternate Sequence:**
-1. User does not have any contacts to start chatting with
-2. Prompt user chat cannot be deleted
+6. User does not have any existing chats
+7. Prompt user there are no chats can be deleted currently
+- **Alternate Sequence:**
+8. User doesn't confirm to delete chat
+9. Chat is not deleted
 
-### Use Case 11: Forgot password
+### Use Case 10: Forgot password
 - **Pre-condition:** User aleady signed up and have an existing account in the system
 - **Trigger:** Clicks forgot password button
 - **Primary Sequence:**
