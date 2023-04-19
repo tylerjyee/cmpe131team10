@@ -5,12 +5,12 @@
 4. Delete & Flag Email (Liza)
 5. Search Emails (Liza)
 6. Edit User Profile (Liza)
-7. todo list (Phillip)
-8. start chat (Phillip)
-9. delete chat (Phillip)
+7. Create todo list (Phillip)
+8. Start chat (Phillip)
+9. Delete chat (Phillip)
 10. Forgot password (Taehun)
-11.  (Taehun)
-12. (Taehun)
+11. Add contact(Taehun)
+12. Delete contact(Taehun)
 
 ## Non-functional Requirements
 1. response time within (5 seconds)
@@ -203,6 +203,33 @@ a. System displays that email is empty
 - **Alternate Sequence:**
 1. User enters an incorrect username 
 2. System prompts user that the incorrect username is not found
+
+### Use Case 11: Add Contact
+- **Pre-condition:** User aleady signed up and have an existing account in the system
+- **Trigger:** Clicks "add contact"
+- **Primary Sequence:**
+1. User will select "add contact".
+2. System prompt user to enter contact info, name and email address.
+3. User press save contact
+4. System will save contact of person
+- **Primary Postconditions:** User is able to see new contact
+- **Alternate Sequence:**
+5. User doesn't save contact
+6. System prompts user that contact has not been saved
+
+### Use Case 11: Delete Contact
+- **Pre-condition:** User aleady signed up and have an existing account in the system
+- **Trigger:** Clicks "delete contact"
+- **Primary Sequence:**
+1. User will select "Delete contact".
+2. System prompt user to select contact to delete.
+3. User press contact to delete
+4. System will propmt user with message of confirmation
+5. User will confirm delete contact
+- **Primary Postconditions:** Contact is removed
+- **Alternate Sequence:**
+6. User doesn't confirm contact to delete
+7. System prompts user that contact has not been deleted
 
 
 
