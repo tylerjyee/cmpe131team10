@@ -7,6 +7,7 @@ from flask_login import current_user
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required
+from flask_mail import mail
 
 @myapp_obj.route("/")
 @myapp_obj.route("/index.html")
@@ -41,3 +42,9 @@ def login():
 @myapp_obj.route("/members/<string:name>/")
 def getMember(name):
     return escape(name)
+
+
+"""@myapp_obj.route("/compose")
+@login_required
+def compose():
+    return render_template('compose.html')"""
