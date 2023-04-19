@@ -42,7 +42,7 @@ def todo():
 
 @myapp_obj.route("/emails")
 def emails():
-    return render_template('email.html')
+    return render_template('emails.html')
 """
 @myapp_obj.route("/")
 @myapp_obj.route("/index.html")
