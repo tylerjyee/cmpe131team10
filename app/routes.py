@@ -4,10 +4,7 @@ from flask import flash
 from flask import url_for
 from .forms import LoginForm
 from app import myapp_obj
-from flask_login import current_user
-from flask_login import login_user
-from flask_login import logout_user
-from flask_login import login_required
+from flask_login import current_user, login_user, logout_user, login_required
 
 @myapp_obj.route("/", methods=["GET"])
 def to_home():
@@ -32,6 +29,22 @@ def login():
         return redirect('/')
     return render_template('login.html', form=form)
 
+@myapp_obj.route("/login", methods=['GET', 'POST'])
+def login():
+    title = "Login Page"
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Login invalid username or password!')
+            return redirect('/login')
+
+        login_user(user, remember=form.remember_me.data)
+        flash(f'Successfull Login for requested user {form.username.data} at {time.strftime("%H:%M:%S")}')
+        return redirect('/')
+
+    return render_template("login.html", form=form,title=title)
+
 @myapp_obj.route("/register")
 def register():
     return render_template('register.html')
@@ -43,6 +56,13 @@ def todo():
 @myapp_obj.route("/emails")
 def emails():
     return render_template('emails.html')
+
+@myapp_obj.route("/contacts")
+def contacts():
+    return render_template('contacts.html')
+
+
+
 """
 @myapp_obj.route("/")
 @myapp_obj.route("/index.html")
