@@ -52,6 +52,4 @@ def emails():
 @myapp_obj.route('/contacts', methods = ['GET','POST'])
 def contact():
     form = ContactForm()
-    if request.method == 'POST':
-        return 'form posted'
     return render_template('contacts.html', form = form)

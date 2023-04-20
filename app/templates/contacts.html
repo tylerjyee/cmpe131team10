@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <h2>Contact</h2>
-<a action="{{ url_for('contact') }}" method=post>
+<a action="{{ url_for('contacts') }}" method=post>
     {{ form.hidden_tag() }}
     {{ form.name.label }}
     {{ form.name }}        
