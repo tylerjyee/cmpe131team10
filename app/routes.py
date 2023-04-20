@@ -45,10 +45,6 @@ def todo():
 def emails():
     return render_template('emails.html')
 
-@myapp_obj.route("/emails")
-def emails():
-    return render_template('emails.html')
-
 @myapp_obj.route('/contacts', methods = ['GET','POST'])
 def contact():
     form = ContactForm()
