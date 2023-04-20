@@ -50,4 +50,4 @@ def contact():
     form = ContactForm()
     if request.method == 'POST':
         return 'form posted'
-    return render_template('contacts.html', form = form)
+    return render_template('contacts.html', form=form)
