@@ -19,4 +19,8 @@ login = LoginManager(myapp_obj)
 
 login.login_view = 'login'
 
+contact = Flask(myapp_obj)
+
+contact.secret_key = 'contacts'
+
 from app import routes, models

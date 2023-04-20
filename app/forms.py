@@ -9,9 +9,9 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
     
 class ContactForm(FlaskForm):
-   name = StringField("Name")
-   email = StringField("Email")
-   subject = StringField("Subject")
+   name = StringField("Name", validators=[DataRequired()])
+   email = StringField("Email", validators=[DataRequired()])
+   subject = StringField("Subject", validators=[DataRequired()])
    message = TextAreaField("Message")
    submit = SubmitField("Send") 
 
