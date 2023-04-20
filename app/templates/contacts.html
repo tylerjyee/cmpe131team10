@@ -1,12 +1,21 @@
-<!DOCTYPE html>
 {%include "menubar.html" %}
-<html>
-    <head>
-        <title>{{ title }} - my blog</title>
-    </head>
-    <body>
-        <li>THIS IS THE CONTACTS PAGE</li>
-        {% block menubar%}
-        {% endblock %}
-    </body>
+{% extends "layout.html" %}
+{% block content %}
+<html></html>
+    <h2>Contact</h2>
+    
+    <form action="{{ url_for('contact') }}" method=post>
+        {{ form.hidden_tag() }}
+        {{ form.name.label }}
+        {{ form.name }}
+        {{ form.email.label }}
+        {{ form.email }}
+        {{ form.subject.label }}
+        {{ form.subject }}
+        {{ form.message.label }}
+        {{ form.message }}
+        {{ form.submit }}
+    </form>
 </html>
+<!DOCTYPE html>
+{% endblock %}

@@ -1,10 +1,8 @@
-from flask import render_template
-from flask import redirect
-from flask import flash
-from flask import url_for
+from flask import render_template, redirect, flash, url_for, request
 from .forms import LoginForm
 from app import myapp_obj
 from flask_login import current_user, login_user, logout_user, login_required
+from forms import ContactForm
 
 @myapp_obj.route("/", methods=["GET"])
 def to_home():
@@ -57,11 +55,13 @@ def todo():
 def emails():
     return render_template('emails.html')
 
-@myapp_obj.route("/contacts")
-def contacts():
-    return render_template('contacts.html')
-
-
+@myapp_obj.route('/contact', methods = ['GET','POST'])
+def contact():
+    form = ContactForm()
+    if request.method == 'POST':
+        return 'form posted'
+    
+    return render_template('contact.html', form = form)
 
 """
 @myapp_obj.route("/")
