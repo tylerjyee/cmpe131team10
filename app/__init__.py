@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_login import LoginManager
+from forms import ContactForm
 
 myapp_obj = Flask(__name__)
 
@@ -19,8 +20,6 @@ login = LoginManager(myapp_obj)
 
 login.login_view = 'login'
 
-contact = Flask(myapp_obj)
-
-contact.secret_key = 'contacts'
+contact = ContactForm(myapp_obj)
 
 from app import routes, models
