@@ -1,12 +1,7 @@
-from flask import render_template
-from flask import redirect
-from flask import flash
+from flask import render_template, redirect, flash, url_for
 from .forms import LoginForm
 from app import myapp_obj
-from flask_login import current_user
-from flask_login import login_user
-from flask_login import logout_user
-from flask_login import login_required
+from flask_login import current_user, login_user, logout_user, login_required
 
 @myapp_obj.route("/")
 @myapp_obj.route("/index.html")
