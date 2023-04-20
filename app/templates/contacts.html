@@ -1,10 +1,8 @@
-{%include "menubar.html" %}
 {% extends "layout.html" %}
 {% block content %}
-<html></html>
     <h2>Contact</h2>
     
-    <form action="{{ url_for('contact') }}" method=post>
+    <a action="{{ url_for('contact') }}" method=post>
         {{ form.hidden_tag() }}
         {{ form.name.label }}
         {{ form.name }}
@@ -16,6 +14,4 @@
         {{ form.message }}
         {{ form.submit }}
     </form>
-</html>
-<!DOCTYPE html>
 {% endblock %}

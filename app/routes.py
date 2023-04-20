@@ -1,5 +1,5 @@
-from flask import render_template, redirect, flash, url_for
-from .forms import LoginForm
+from flask import render_template, redirect, flash, url_for, request
+from .forms import LoginForm, ContactForm
 from app import myapp_obj
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -33,9 +33,6 @@ def login():
         return redirect('/')
     return render_template('login.html', form=form)
 
-@myapp_obj.route("/members/<string:name>/")
-def getMember(name):
-    return escape(name)
 @myapp_obj.route("/register")
 def register():
     return render_template('register.html')
@@ -48,3 +45,13 @@ def todo():
 def emails():
     return render_template('emails.html')
 
+@myapp_obj.route("/emails")
+def emails():
+    return render_template('emails.html')
+
+@myapp_obj.route('/contacts', methods = ['GET','POST'])
+def contact():
+    form = ContactForm()
+    if request.method == 'POST':
+        return 'form posted'
+    return render_template('contacts.html', form = form)
