@@ -1,8 +1,7 @@
-from flask import render_template, redirect, flash, url_for, request
+from flask import render_template, redirect, flash, url_for
 from .forms import LoginForm
 from app import myapp_obj
 from flask_login import current_user, login_user, logout_user, login_required
-from forms import ContactForm
 
 @myapp_obj.route("/", methods=["GET"])
 def to_home():
@@ -54,7 +53,7 @@ def todo():
 @myapp_obj.route("/emails")
 def emails():
     return render_template('emails.html')
-
+"""
 @myapp_obj.route('/contact', methods = ['GET','POST'])
 def contact():
     form = ContactForm()
@@ -63,7 +62,7 @@ def contact():
     
     return render_template('contact.html', form = form)
 
-"""
+
 @myapp_obj.route("/")
 @myapp_obj.route("/index.html")
 def index():
