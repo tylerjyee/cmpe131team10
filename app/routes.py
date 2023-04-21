@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-from flask import render_template
-from flask import redirect
-from flask import flash
-from flask import url_for
-from .forms import LoginForm, RegisterForm
-=======
 from flask import render_template, redirect, flash, url_for, request
 from .forms import LoginForm, ContactForm, ComposeForm
->>>>>>> 0e276b9941538d374ca74a256e127ed204220a0a
 from app import myapp_obj
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_mail import Mail, Message
