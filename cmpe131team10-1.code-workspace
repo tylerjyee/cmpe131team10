@@ -1,9 +1,7 @@
 {
-	"folders": [
-		{
-			"name": "cmpe131team10-1",
-			"path": "."
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
 }
