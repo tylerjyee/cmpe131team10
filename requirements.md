@@ -205,31 +205,36 @@ a. System displays that email is empty
 2. System prompts user that the incorrect username is not found
 
 ### Use Case 11: Add Contact
+### Use Case 11: Delete Todo List
 - **Pre-condition:** User aleady signed up and have an existing account in the system
-- **Trigger:** Clicks "add contact"
+- **Trigger:** Clicks "delete todo list/item"
 - **Primary Sequence:**
-1. User will select "add contact".
-2. System prompt user to enter contact info, name and email address.
-3. User press save contact
-4. System will save contact of person
-- **Primary Postconditions:** User is able to see new contact
+1. User will select "delete todo list/item".
+2. System prompt user select item or todo list to delete
+3. User press list or item they want to delete
+4. System prompt user to confirm change
+5. User will confirm change
+- **Primary Postconditions:** User is able to see todo list/item delted
 - **Alternate Sequence:**
-5. User doesn't save contact
-6. System prompts user that contact has not been saved
+6. User doesn't save change
+7. System prompts user that change has not been saved
 
-### Use Case 11: Delete Contact
+### Use Case 12: Contact Form
 - **Pre-condition:** User aleady signed up and have an existing account in the system
-- **Trigger:** Clicks "delete contact"
+- **Trigger:** Clicks "Contact Us"
 - **Primary Sequence:**
-1. User will select "Delete contact".
-2. System prompt user to select contact to delete.
-3. User press contact to delete
+1. User will select "Contact Us"
+2. System prompt user to enter information.
+3. User inputs information
 4. System will propmt user with message of confirmation
 5. User will confirm delete contact
-- **Primary Postconditions:** Contact is removed
+- **Primary Postconditions:** Contact form is sent
 - **Alternate Sequence:**
-6. User doesn't confirm contact to delete
-7. System prompts user that contact has not been deleted
+6. User doesn't confirm sending contact form
+7. System prompts user that contact form has not been sent
+- **Alternate Sequence:**
+8. User doesn't enter all required info
+9. System prompts user to enter all required info
 
 
 
