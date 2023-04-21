@@ -4,19 +4,9 @@ from app import myapp_obj
 from flask_login import current_user, login_user, logout_user, login_required
 
 @myapp_obj.route("/")
-@myapp_obj.route("/index.html")
-def index():
-    name = 'Carlos'
-    books = [ {'author': 'authorname1',
-                'book':'bookname1'},
-             {'author': 'authorname2',
-              'book': 'bookname2'}]
-    return render_template('hello.html',name=name, books=books)
-
-@myapp_obj.route("/hello")
-@login_required
-def hello():
-    return "Hello World!"
+@myapp_obj.route("/home.html")
+def home():
+    return render_template('home.html')
 
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
