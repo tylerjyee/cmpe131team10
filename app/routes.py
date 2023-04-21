@@ -1,21 +1,21 @@
+<<<<<<< HEAD
 from flask import render_template
 from flask import redirect
 from flask import flash
 from flask import url_for
 from .forms import LoginForm, RegisterForm
+=======
+from flask import render_template, redirect, flash, url_for, request
+from .forms import LoginForm, ContactForm, ComposeForm
+>>>>>>> 0e276b9941538d374ca74a256e127ed204220a0a
 from app import myapp_obj
-from flask_login import current_user
-from flask_login import login_user
-from flask_login import logout_user
-from flask_login import login_required
+from flask_login import current_user, login_user, logout_user, login_required
+from flask_mail import Mail, Message
 
-@myapp_obj.route("/", methods=["GET"])
-def to_home():
-    return redirect(url_for('home'))
-
-@myapp_obj.route("/home")
+@myapp_obj.route("/")
+@myapp_obj.route("/home.html")
 def home():
-    return render_template('home.html', title = "home")
+    return render_template('home.html')
 
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
@@ -41,46 +41,27 @@ def register():
 def todo():
     return render_template('todo.html',)
 
-@myapp_obj.route("/emails")
+@myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
-    return render_template('emails.html')
-"""
-@myapp_obj.route("/")
-@myapp_obj.route("/index.html")
-def index():
-    name = 'Carlos'
-    books = [ {'author': 'authorname1',
-                'book':'bookname1'},
-             {'author': 'authorname2',
-              'book': 'bookname2'}]
-    return render_template('hello.html',name=name, books=books)
+    form = ComposeForm()
+    if request.method == 'POST':
+        if form.validate() == False:
+            flash('All fields required')
+            return render_template('emails.html', form=form)
+        else:
+            print('Email Sent')
+            return redirect('/home.html')
+    elif request.method == 'GET':
+        return render_template('emails.html', form=form)
 
-@myapp_obj.route("/hello")
-@login_required
-def hello():
-    return "Hello World!"
-
-@myapp_obj.route("/login", methods=['GET', 'POST'])
-def login():
-    # create form
-    form = LoginForm()
-    # if form inputs are valid
-    if form.validate_on_submit():
-        # search database for username
-        # user = User.query.filter_by(...)
-        # check the password
-        # if password matches
-        # login_user(user)
-        flash(f'Here are the input {form.username.data} and {form.password.data}')
-        return redirect('/')
-    return render_template('login.html', form=form)
-
-@myapp_obj.route("/members/<string:name>/")
-def getMember(name):
-    return escape(name)
-
-
-@myapp_obj.route("/compose")
-@login_required
-def compose():
-    return render_template('compose.html')"""
+@myapp_obj.route('/contacts', methods = ['GET','POST'])
+def contact():
+    form = ContactForm()
+    if request.method == 'POST':
+        if form.validate() == False:
+            flash('All fields required')
+            return render_template('contacts.html', form=form)
+        else:
+            return 'form posted'
+    elif request.method == 'GET':
+        return render_template('contacts.html', form=form)

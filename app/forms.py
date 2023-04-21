@@ -1,12 +1,31 @@
 from flask_wtf import FlaskForm
+<<<<<<< HEAD
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, Length
+=======
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField 
+from wtforms.validators import DataRequired
+>>>>>>> 0e276b9941538d374ca74a256e127ed204220a0a
 
 class LoginForm(FlaskForm):
     username = StringField('Userename', validators=[DataRequired(), Length(min=3)])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
+    
+class ContactForm(FlaskForm):
+   name = StringField("Name", validators=[DataRequired()])
+   email = StringField("Email", validators=[DataRequired()])
+   subject = StringField("Subject", validators=[DataRequired()])
+   message = TextAreaField("Message", validators=[DataRequired()])
+   submit = SubmitField("Send")
+
+class ComposeForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired()])
+    subject = StringField("Subject", validators=[DataRequired()])
+    message = TextAreaField("Message", validators=[DataRequired()])
+    submit = SubmitField("Send")
 
 
 class RegisterForm(FlaskForm):

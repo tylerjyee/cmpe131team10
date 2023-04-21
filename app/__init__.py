@@ -19,4 +19,6 @@ login = LoginManager(myapp_obj)
 
 login.login_view = 'login'
 
+#contact = ContactForm(myapp_obj)
+
 from app import routes, models
