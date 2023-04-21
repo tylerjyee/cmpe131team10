@@ -1,5 +1,5 @@
 from flask import render_template, redirect, flash, url_for, request
-from .forms import LoginForm, ContactForm
+from .forms import LoginForm, ContactForm, ComposeForm
 from app import myapp_obj
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_mail import Mail, Message
@@ -34,7 +34,7 @@ def todo():
 
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
-    form = ComposeEmail()
+    form = ComposeForm()
     if request.method == 'POST':
         if form.validate() == False:
             flash('All fields required')
