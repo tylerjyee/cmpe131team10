@@ -9,8 +9,8 @@
 8. Start chat (Phillip)
 9. Delete chat (Phillip)
 10. Forgot password (Taehun)
-11. Add contact(Taehun)
-12. Delete contact(Taehun)
+11. Delete todo item/list (Taehun)
+12. Contact FormTaehun)
 
 ## Non-functional Requirements
 1. response time within (5 seconds)

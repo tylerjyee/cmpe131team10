@@ -22,12 +22,6 @@ class User(db.Model, UserMixin):
 def load_user(id):
     return User.query.get(int(id))
 
-class Contacts(db.Model):
-    __tablename__="contacts"
-    contactID = db.Column(db.Integer, primary_key=True)
-    fName =db.Column(db.String, nullable=False)
-    lName =db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=True)
 
 
 
