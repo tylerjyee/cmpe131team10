@@ -41,3 +41,5 @@ class Contacts(db.Model):
     fName =db.Column(db.String, nullable=False)
     lName =db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=True)
+
+
