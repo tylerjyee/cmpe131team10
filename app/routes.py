@@ -49,5 +49,10 @@ def emails():
 def contact():
     form = ContactForm()
     if request.method == 'POST':
-        return 'form posted'
-    return render_template('contacts.html', form=form)
+        if form.validate() == False:
+            flash('All fields required')
+            return render_template('contacts.html', form=form)
+        else:
+            return 'form posted'
+    elif request.method == 'GET':
+        return render_template('contacts.html', form=form)

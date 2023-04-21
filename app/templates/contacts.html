@@ -2,6 +2,11 @@
 {%include "menubar.html" %}
 {% block content %}
 <h2>Contact</h2>
+{% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+{% endfor %}
+
+
 <form action="" method="POST" novalidate>
     {{ form.hidden_tag() }}
     <p> {{ form.name.label }}<br>
