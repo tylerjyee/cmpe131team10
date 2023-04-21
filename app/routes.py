@@ -2,7 +2,7 @@ from flask import render_template
 from flask import redirect
 from flask import flash
 from flask import url_for
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
 from app import myapp_obj
 from flask_login import current_user
 from flask_login import login_user
@@ -32,9 +32,10 @@ def login():
         return redirect('/')
     return render_template('login.html', form=form)
 
-@myapp_obj.route("/register")
+@myapp_obj.route("/register", methods=['GET','POST'])
 def register():
-    return render_template('register.html')
+    form = RegisterForm()
+    return render_template('register.html', form=form)
 
 @myapp_obj.route("/todo")
 def todo():
