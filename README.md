@@ -12,3 +12,13 @@ Building an email and chat website contains sensitive information that each user
 
 ### Implementation
 Communication is a big part of our world today since we normally work with other people. Our website allows a user to send and recieve emails within an internal system to other users. In order for a user to use our website, they would need to make an account and it would then give them access to our website. Besides sending snd recieving emails, the user is able to send chat messages and create a todo list.
+
+For our webpage we used Python, Flask, and HTML
+
+
+### Instructions
+- First create an account or login
+- Access features such as chat, email, or todo list via buttons
+- Once done with messaging
+- Logout of account
+- Login next time via username and password
