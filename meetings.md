@@ -16,7 +16,14 @@ meeting schedule and team lead.
 - Tyler: compose email, flag, forgot password
 - Liza: delete email, edit profle, search email
 - Summarize group progress: Group was clear on what needs to be done. We agreed to get it done by 4/23 so we have time to debug.
-### 2022-04-23 at 10:00
+### 2022-04-21 at 10:45
+- Physical Meeting, Everyone attended
+- Team updates: Working on implementing requirements from milestone 2
+- Taehun: Worked on and completed the Register page and Login pages. Going to work on Logout and
+- Phillip: Hasn't started but will work on create todo list, start chat, delete chat
+- Tyler: Worked on compose email and contact form. Have delete todo list/items on stand-by waiting for the create todo list feature to be created.
+- Liza: Started work on editing profiles page. Need to work on delete email and search email
+- Summarize group progress: Each member is getting done with each requirement that needs to be done.
 ### 2022-04-30 at 10:00
 ### 2022-05-07 at 10:00
 ### 2022-05-14 at 10:00

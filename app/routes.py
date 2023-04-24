@@ -1,8 +1,8 @@
 from flask import render_template, redirect, flash, url_for, request
-from .forms import LoginForm, ContactForm, ComposeForm
+from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm
 from app import myapp_obj
 from flask_login import current_user, login_user, logout_user, login_required
-from flask_mail import Mail, Message
+#from flask_mail import Mail, Message
 
 @myapp_obj.route("/")
 @myapp_obj.route("/home.html")
@@ -24,9 +24,10 @@ def login():
         return redirect('/')
     return render_template('login.html', form=form)
 
-@myapp_obj.route("/register")
+@myapp_obj.route("/register", methods=['GET','POST'])
 def register():
-    return render_template('register.html')
+    form = RegisterForm()
+    return render_template('register.html', form=form)
 
 @myapp_obj.route("/todo")
 def todo():
@@ -56,3 +57,7 @@ def contact():
             return 'form posted'
     elif request.method == 'GET':
         return render_template('contacts.html', form=form)
+    
+@myapp_obj.route("/profile")
+def profile():
+    return render_template('profile.html',)
