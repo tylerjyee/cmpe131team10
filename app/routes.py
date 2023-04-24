@@ -73,7 +73,6 @@ def contact():
     elif request.method == 'GET':
         return render_template('contacts.html', form=form)
     
-
 @myapp_obj.route("/profile")
 def profile():
-    return render_template('profile.html',)
+    return render_template('profile.html')
