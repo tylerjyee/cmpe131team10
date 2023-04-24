@@ -29,9 +29,24 @@ def register():
     form = RegisterForm()
     return render_template('register.html', form=form)
 
-@myapp_obj.route("/todo")
+@myapp_obj.route('/todo', methods=['GET', 'POST'])
 def todo():
-    return render_template('todo.html',)
+    if request.method == 'POST':
+        # Get the todo item from the form input
+        todo_item = request.form.get('todo-item')
+        # Add the todo item to the database or file
+        # Redirect back to the todo page to show the updated list
+        with open("todo.txt", "a") as f:
+            f.write(todo_item + "\n")
+        # Redirect back to the todo page to show the updated list
+        return redirect(url_for('todo'))
+
+    # Get the todo list from the database or file
+    with open("todo.txt", "r") as f:
+        todo_list = f.readlines()
+    # Render the todo page with the todo list
+    return render_template('todo.html', todo_list=todo_list)
+
 
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
@@ -60,4 +75,4 @@ def contact():
     
     @myapp_obj.route("/profile")
     def profile():
-        return render_template('profile.html',)
+        return render_template('profile.html')
