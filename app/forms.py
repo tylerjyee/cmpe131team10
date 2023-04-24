@@ -23,7 +23,7 @@ class ComposeForm(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
-    email = StringField('Enter an email', validators=[DataRequired(), Email(message='Invalid email'),Length(max=50,min=3)])
+    email = StringField('Enter an email', validators=[DataRequired(), Length(max=50,min=3)])
     username = StringField('Enter an username', validators=[DataRequired(), Length(max=15,min=3)])
     password = PasswordField('Enter a new password', validators=[DataRequired(), Length(max=20,min=3)])
     password2 = PasswordField('Re-enter the password', validators=[DataRequired(), Length(max=20,min=3)])
