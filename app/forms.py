@@ -29,3 +29,8 @@ class RegisterForm(FlaskForm):
     password2 = PasswordField('Re-enter the password', validators=[DataRequired(), Length(max=20,min=3)])
     register = SubmitField('Register')
     cancel = SubmitField('Cancel')
+
+class TodoForm(FlaskForm):
+    subject = StringField("Subject", validators=[DataRequired()])
+    message = TextAreaField("Message", validators=[DataRequired()])
+    cancel = SubmitField('Cancel')
