@@ -5,6 +5,9 @@ from flask_login import current_user, login_user, logout_user, login_required
 #from flask_mail import Mail, Message
 
 @myapp_obj.route("/")
+def welcome():
+    return render_template('welcome.html')
+
 @myapp_obj.route("/home.html")
 def home():
     return render_template('home.html')
@@ -21,12 +24,15 @@ def login():
         # if password matches
         # login_user(user)
         flash(f'Here are the input {form.username.data} and {form.password.data}')
-        return redirect('/')
+        return redirect('/home.html')
     return render_template('login.html', form=form)
 
 @myapp_obj.route("/register", methods=['GET','POST'])
 def register():
     form = RegisterForm()
+    if form.validate_on_submit():
+        flash(f'You have successfully registered')
+        return redirect('/home.html')
     return render_template('register.html', form=form)
 
 @myapp_obj.route('/todo', methods=['GET', 'POST'])
