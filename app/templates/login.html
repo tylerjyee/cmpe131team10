@@ -1,4 +1,5 @@
 {% extends "base.html"%}
+{%include "menubar.html" %}
 {% block content %}
 <h1>Sign In</h1>
 <form action="" method="POST" novalidate>
@@ -8,10 +9,11 @@
 
     <p> {{form.password.label}} <br>
        {{form.password(size=32)}}</p>
-
+    <!--
     <p> {{form.remember_me.label}} <br>
        {{form.remember_me()}}</p>
-
+    --> 
     <p>{{form.submit()}}</p>
+    <a href="{{url_for('register')}}"> Don't have an account? Sign up</a><br>
 </form>
 {% endblock %}
