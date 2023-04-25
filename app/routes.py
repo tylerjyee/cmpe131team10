@@ -6,7 +6,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 #from flask_mail import Mail, Message
 
 @myapp_obj.route("/")
-@myapp_obj.route("/home.html")
+def welcome():
+    return render_template('welcome.html')
+
+@myapp_obj.route("/home")
 def home():
     return render_template('home.html')
 
@@ -22,19 +25,15 @@ def login():
         # if password matches
         # login_user(user)
         flash(f'Here are the input {form.username.data} and {form.password.data}')
-        return redirect('/')
+        return redirect('/home')
     return render_template('login.html', form=form)
 
 @myapp_obj.route("/register", methods=['GET','POST'])
 def register():
     form = RegisterForm()
-
     if form.validate_on_submit():
-        hashed_password = generate_password_hash(form.password.data)
-        username = form.username.data
-        password = hashed_password
-
-
+        flash(f'You have successfully registered')
+        return redirect('/home')
     return render_template('register.html', form=form)
 
 @myapp_obj.route("/unregister", methods=['GET','POST'])
@@ -53,13 +52,13 @@ def unregister():
 def todo():
     if request.method == 'POST':
         # Get the todo item from the form input
-        todo_item = request.form.get('todo-item')
+        todo_item = request.form.get('todoitem')
         # Add the todo item to the database or file
         # Redirect back to the todo page to show the updated list
         with open("todo.txt", "a") as f:
             f.write(todo_item + "\n")
         # Redirect back to the todo page to show the updated list
-        return redirect(url_for('todo'))
+        return redirect(url_for('/todo'))
 
     # Get the todo list from the database or file
     with open("todo.txt", "r") as f:
@@ -77,7 +76,7 @@ def emails():
             return render_template('emails.html', form=form)
         else:
             print('Email Sent')
-            return redirect('/home.html')
+            return redirect('/home')
     elif request.method == 'GET':
         return render_template('emails.html', form=form)
 
