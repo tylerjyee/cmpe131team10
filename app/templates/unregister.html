@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+{%include "menubar.html" %}
+
 {% block content %}
-<h1>Register a new account</h1>
+<h1>Delete an account</h1>
 <form action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     <p> {{form.username.label}} <br>
@@ -15,9 +17,8 @@
     <p> {{form.password2.label}} <br>
     {{form.password2(size=32)}}</p>
 
-    <p>{{form.register()}}</p>
+    <p>{{form.unregister()}}</p>
 
-    <a href="{{url_for('login')}}"> Already have an account? Log in</a><br>
 
 </form>
 {% endblock %}
