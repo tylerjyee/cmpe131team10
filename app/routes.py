@@ -8,7 +8,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 def welcome():
     return render_template('welcome.html')
 
-@myapp_obj.route("/home.html")
+@myapp_obj.route("/home")
 def home():
     return render_template('home.html')
 
