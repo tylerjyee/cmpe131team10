@@ -33,20 +33,28 @@ def register():
 def todo():
     if request.method == 'POST':
         # Get the todo item from the form input
-        todo_item = request.form.get('todo-item')
-        # Add the todo item to the database or file
+        todo_item = request.form.get('todoitem')
+        # Add the todo item to the file
+        # Create the file if it does not exist
+        try:
+            with open("todo.txt", "a") as f:
+                f.write(todo_item + "\n")
+        except FileNotFoundError:
+            with open("todo.txt", "w") as f:
+                f.write(todo_item + "\n")
         # Redirect back to the todo page to show the updated list
-        with open("todo.txt", "a") as f:
-            f.write(todo_item + "\n")
-        # Redirect back to the todo page to show the updated list
-        return redirect(url_for('todo'))
+        return redirect(url_for('/todo'))
 
-    # Get the todo list from the database or file
-    with open("todo.txt", "r") as f:
-        todo_list = f.readlines()
+    # Get the todo list from the file
+    # Create the file if it does not exist
+    try:
+        with open("todo.txt", "r") as f:
+            todo_list = f.readlines()
+    except FileNotFoundError:
+        with open("todo.txt", "w") as f:
+            todo_list = []
     # Render the todo page with the todo list
     return render_template('todo.html', todo_list=todo_list)
-
 
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
