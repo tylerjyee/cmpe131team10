@@ -24,7 +24,7 @@ def login():
         # if password matches
         # login_user(user)
         flash(f'Here are the input {form.username.data} and {form.password.data}')
-        return redirect('/home.html')
+        return redirect('/home')
     return render_template('login.html', form=form)
 
 @myapp_obj.route("/register", methods=['GET','POST'])
@@ -32,7 +32,7 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
         flash(f'You have successfully registered')
-        return redirect('/home.html')
+        return redirect('/home')
     return render_template('register.html', form=form)
 
 @myapp_obj.route('/todo', methods=['GET', 'POST'])
@@ -63,7 +63,7 @@ def emails():
             return render_template('emails.html', form=form)
         else:
             print('Email Sent')
-            return redirect('/home.html')
+            return redirect('/home')
     elif request.method == 'GET':
         return render_template('emails.html', form=form)
 
