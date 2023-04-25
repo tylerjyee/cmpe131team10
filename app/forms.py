@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField 
 from wtforms.validators import DataRequired, Email, Length
+
 class LoginForm(FlaskForm):
     username = StringField('Userename', validators=[DataRequired(), Length(min=3)])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -28,7 +29,15 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Enter a new password', validators=[DataRequired(), Length(max=20,min=3)])
     password2 = PasswordField('Re-enter the password', validators=[DataRequired(), Length(max=20,min=3)])
     register = SubmitField('Register')
-    cancel = SubmitField('Cancel')
+
+
+class UnregisterForm(FlaskForm):
+    email = StringField('Enter email', validators=[DataRequired(),Length(max=50,min=3)]) #, Email(message='Invalid email')
+    username = StringField('Enter username', validators=[DataRequired(), Length(max=15,min=3)])
+    password = PasswordField('Enter password', validators=[DataRequired(), Length(max=20,min=3)])
+    password2 = PasswordField('Re-enter the password', validators=[DataRequired(), Length(max=20,min=3)])
+    unregister = SubmitField('Unregister')
+
 
 class TodoForm(FlaskForm):
     todoitem = StringField("To-Do Item", validators=[DataRequired()])

@@ -1,5 +1,5 @@
 from flask import render_template, redirect, flash, url_for, request
-from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm
+from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm
 from app import myapp_obj
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -36,6 +36,18 @@ def register():
 
 
     return render_template('register.html', form=form)
+
+@myapp_obj.route("/unregister", methods=['GET','POST'])
+def unregister():
+    form = UnregisterForm()
+
+    if form.validate_on_submit():
+        hashed_password = generate_password_hash(form.password.data)
+        username = form.username.data
+        password = hashed_password
+
+
+    return render_template('unregister.html', form=form)
 
 @myapp_obj.route('/todo', methods=['GET', 'POST'])
 def todo():
