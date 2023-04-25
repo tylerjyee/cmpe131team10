@@ -39,13 +39,13 @@ def register():
 def todo():
     if request.method == 'POST':
         # Get the todo item from the form input
-        todo_item = request.form.get('todo-item')
+        todo_item = request.form.get('todoitem')
         # Add the todo item to the database or file
         # Redirect back to the todo page to show the updated list
         with open("todo.txt", "a") as f:
             f.write(todo_item + "\n")
         # Redirect back to the todo page to show the updated list
-        return redirect(url_for('todo'))
+        return redirect(url_for('/todo'))
 
     # Get the todo list from the database or file
     with open("todo.txt", "r") as f:
