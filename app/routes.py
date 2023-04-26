@@ -1,5 +1,5 @@
 from flask import render_template, redirect, flash, url_for, request
-from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm
+from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm
 from app import myapp_obj
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -95,3 +95,11 @@ def contact():
 @myapp_obj.route("/profile")
 def profile():
     return render_template('profile.html')
+
+@myapp_obj.route("/forgotpw", methods=['GET','POST'])
+def forgotpw():
+    form = ForgotpwForm()
+    if form.validate_on_submit():
+        flash(f'You have successfully reset your password')
+        return redirect('/home')
+    return render_template('forgotpw.html', form=form)
