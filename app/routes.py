@@ -103,3 +103,10 @@ def forgotpw():
         flash(f'You have successfully reset your password')
         return redirect('/home')
     return render_template('forgotpw.html', form=form)
+
+@myapp_obj.route("/logout", methods=['GET','POST'])
+@login_required
+def logoutPage():
+    logout_user()
+    flash('You have successfully logged out!')
+    return redirect('/')
