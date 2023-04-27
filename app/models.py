@@ -24,7 +24,10 @@ class User(db.Model, UserMixin):
 def load_user(id):
     return User.query.get(int(id))
 
-
+class ToDoList(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    name_of_task = db.Column(db.String(100))
+    completed_form = db.Column(db.Boolean)
 
 
 

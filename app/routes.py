@@ -1,7 +1,7 @@
 from flask import render_template, redirect, flash, url_for, request
 
-from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm
-from .models import User
+from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm
+from .models import User, ToDoList
 from app import myapp_obj, db
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -59,21 +59,23 @@ def unregister():
 
 @myapp_obj.route('/todo', methods=['GET', 'POST'])
 def todo():
+    #cretes to-do list form
+    form = TodoForm()
+    title = "To-Do List"
+    #trys to create a new task on todo list
     if request.method == 'POST':
-        # Get the todo item from the form input
-        todo_item = request.form.get('todoitem')
-        # Add the todo item to the database or file
-        # Redirect back to the todo page to show the updated list
-        with open("todo.txt", "a") as f:
-            f.write(todo_item + "\n")
-        # Redirect back to the todo page to show the updated list
-        return redirect(url_for('/todo'))
-
-    # Get the todo list from the database or file
-    with open("todo.txt", "r") as f:
-        todo_list = f.readlines()
-    # Render the todo page with the todo list
-    return render_template('todo.html', todo_list=todo_list)
+        task_content = request.form['taskname']
+        new_task = TodoForm(task_name = task_content)
+        try:
+            #adds new task
+            db.session.add (new_task)
+            db.session.commit()
+            return redirect('To-do List')
+        except:
+            return flash ('Task could not be added')
+    else:
+        tasks = ToDoList.query.all()
+        return render_template ("todolist.html", tasks = tasks, form=form, title=title)
 
 
 @myapp_obj.route('/emails', methods = ['GET','POST'])
