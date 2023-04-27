@@ -49,10 +49,16 @@ def unregister():
     form = UnregisterForm()
 
     if form.validate_on_submit():
-        hashed_password = generate_password_hash(form.password.data)
-        username = form.username.data
-        password = hashed_password
-
+        user=User.query.filter_by(username=form.username.data).first()
+        if form.username.data==user.username and form.email.data==user.email and form.password.data==user.password:
+            db.session.delete(user)
+            db.session.commit()
+            flash(f'Successfully deleted an account for {form.username.data}')
+            return render_template(url_for('welcome'))
+        #if password doesn't match
+        else:
+            flash(f'Unsuccessful deleting an account for {form.username.data}. Please try again')
+            return render_template(url_for('unregister'))
 
     return render_template('unregister.html', form=form)
 
