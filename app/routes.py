@@ -142,7 +142,7 @@ def delete_chat(room):
     
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
-    return render_template('email.html')
+    return render_template('emails.html')
     
 @myapp_obj.route("/compose")
 def compose():
