@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Start a Chat</h1>
+    <form method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.chat_with.label }} {{ form.chat_with }}
+        </div>
+        <div class="form-group">
+            {{ form.submit }}
+        </div>
+    </form>
+{% endblock %}

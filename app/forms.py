@@ -5,7 +5,6 @@ from wtforms.validators import DataRequired, Email, Length
 class LoginForm(FlaskForm):
     username = StringField('Userename', validators=[DataRequired(), Length(min=3)])
     password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
     
 class ContactForm(FlaskForm):
@@ -48,3 +47,10 @@ class TodoForm(FlaskForm):
     todoitem = StringField("To-Do Item", validators=[DataRequired()])
     text = TextAreaField("Text.", validators=[DataRequired()])
     cancel = SubmitField('Cancel')
+
+class StartChatForm(FlaskForm):
+    chat_with = StringField('Chat With', validators=[DataRequired()])
+    submit = SubmitField('Start Chat')
+
+class DeleteChatForm(FlaskForm):
+    submit = SubmitField('Delete Chat')
