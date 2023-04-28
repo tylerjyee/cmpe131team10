@@ -1,6 +1,6 @@
 from flask import render_template, redirect, flash, url_for, request
 
-from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm
+from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
 from .models import User, ToDoList
 from app import myapp_obj, db
 from flask_login import current_user, login_user, logout_user, login_required
@@ -77,7 +77,37 @@ def todo():
         tasks = ToDoList.query.all()
         return render_template ("todolist.html", tasks = tasks, form=form, title=title)
  
+@myapp_obj.route('/start_chat', methods=['GET', 'POST'])
+@login_required
+def start_chat():
+    form = StartChatForm()
+    if form.validate_on_submit():
+        # get the username of the person to chat with
+        chat_with = form.chat_with.data
+        # create a chat room with the current user and the person to chat with
+        chat_room = current_user.username + '-' + chat_with
+        # redirect to the chat room
+        return redirect(url_for('chat_room', room=chat_room))
+    # get a list of all users except the current user
+    users = User.query.filter(User.username != current_user.username).all()
+    return render_template('start_chat.html', form=form, users=users)
 
+@myapp_obj.route('/delete_chat/<room>', methods=['POST'])
+@login_required
+def delete_chat(room):
+    # ensure that the current user is part of the chat room
+    if current_user.username in room:
+        # delete the chat room
+        chat_room = ChatRoom.query.filter_by(name=room).first()
+        db.session.delete(chat_room)
+        db.session.commit()
+        # redirect to the home page
+        return redirect(url_for('home'))
+    else:
+        # if the current user is not part of the chat room, return an error message
+        flash('You do not have permission to delete this chat room.')
+        return redirect(url_for('home'))
+    
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
     form = ComposeForm()
