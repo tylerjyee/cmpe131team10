@@ -76,10 +76,10 @@ def todo():
         except:
             return flash ('Task could not be added')
     else:
-        tasks = ToDoList.query.all()
+        tasks = TodoForm.query.all()
         return render_template ("todolist.html", tasks = tasks, form=form, title=title)
     
-@app_Obj.route('/delete/<int:id>')
+@myapp_obj.route('/delete/<int:id>')
 def delete(id):
     delete_task = TodoForm.query.get_or_404(id)
     try:
@@ -89,7 +89,7 @@ def delete(id):
     except:
         return flash ('Error: could not delete a task')
 
-@app_Obj.route ('/update/<int:id>', methods = ['GET', 'POST'])
+@myapp_obj.route ('/update/<int:id>', methods = ['GET', 'POST'])
 def update(id):
     form = TodoForm()
     title = "Update Task"
