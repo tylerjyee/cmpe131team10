@@ -78,7 +78,6 @@ def todo():
         return render_template ("todolist.html", tasks = tasks, form=form, title=title)
  
 @myapp_obj.route('/start_chat', methods=['GET', 'POST'])
-@login_required
 def start_chat():
     form = StartChatForm()
     if form.validate_on_submit():
@@ -93,7 +92,6 @@ def start_chat():
     return render_template('start_chat.html', form=form, users=users)
 
 @myapp_obj.route('/delete_chat/<room>', methods=['POST'])
-@login_required
 def delete_chat(room):
     # ensure that the current user is part of the chat room
     if current_user.username in room:
