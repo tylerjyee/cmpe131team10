@@ -152,6 +152,10 @@ def emails():
             return redirect('/home')
     elif request.method == 'GET':
         return render_template('emails.html', form=form)
+    
+@myapp_obj.route("/compose")
+def compose():
+    return render_template('compose.html')
 
 @myapp_obj.route('/contacts', methods = ['GET','POST'])
 def contact():
@@ -186,7 +190,7 @@ def forgotpw():
         # check the password and if password matches
         if form.username.data==user.username and form.email.data==user.email:
     
-            flash(f'This is your password: {form.password.data}')
+            flash(f'This is your password: {user.password}')
             return redirect(url_for('forgotpw'))
         else:
             flash(f'Not registed account! Please try again')
