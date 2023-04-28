@@ -142,16 +142,7 @@ def delete_chat(room):
     
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
-    form = ComposeForm()
-    if request.method == 'POST':
-        if form.validate() == False:
-            flash('All fields required')
-            return render_template('emails.html', form=form)
-        else:
-            print('Email Sent')
-            return redirect('/home')
-    elif request.method == 'GET':
-        return render_template('emails.html', form=form)
+    return render_template('email.html')
     
 @myapp_obj.route("/compose")
 def compose():
