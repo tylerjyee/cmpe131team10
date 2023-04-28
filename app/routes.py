@@ -145,6 +145,10 @@ def emails():
             return redirect('/home')
     elif request.method == 'GET':
         return render_template('emails.html', form=form)
+    
+@myapp_obj.route("/compose")
+def compose():
+    return render_template('compose.html')
 
 @myapp_obj.route('/contacts', methods = ['GET','POST'])
 def contact():
