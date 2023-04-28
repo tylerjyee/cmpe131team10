@@ -2,7 +2,7 @@ from flask import render_template, redirect, flash, url_for, request
 
 
 from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
-from .models import ChatRoom, User, ToDoList
+from .models import ChatRoom, User
 
 from app import myapp_obj, db
 from flask_login import current_user, login_user, logout_user, login_required
@@ -78,6 +78,31 @@ def todo():
     else:
         tasks = ToDoList.query.all()
         return render_template ("todolist.html", tasks = tasks, form=form, title=title)
+    
+@app_Obj.route('/delete/<int:id>')
+def delete(id):
+    delete_task = TodoForm.query.get_or_404(id)
+    try:
+        db.session.delete(delete_task)
+        db.session.commit()
+        return redirect ('/todolist')
+    except:
+        return flash ('Error: could not delete a task')
+
+@app_Obj.route ('/update/<int:id>', methods = ['GET', 'POST'])
+def update(id):
+    form = TodoForm()
+    title = "Update Task"
+    task = TodoForm.query.get_or_404(id)
+    if request.method == 'POST':
+        task.task_name = request.form['task_name']
+        try:
+            db.session.commit()
+            return redirect ('/todolist')
+        except:
+            return flash('Error: could not update a task')
+    else:
+        return render_template('update.html', task = task, form=form,title=title)
  
 @myapp_obj.route('/start_chat', methods=['GET', 'POST'])
 def start_chat():
