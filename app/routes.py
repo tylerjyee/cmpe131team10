@@ -67,7 +67,7 @@ def todo():
     #trys to create a new task on todo lists
     if request.method == 'POST':
         task_content = request.form['taskname']
-        new_task = TodoForm(task_name = task_content)
+        new_task = ToDoList(task_name = task_content)
         try:
             #adds new task
             db.session.add (new_task)
@@ -78,6 +78,31 @@ def todo():
     else:
         tasks = todo.query.all()
         return render_template ("todolist.html", tasks = tasks, form=form, title=title)
+    
+@myapp_obj.route('/delete/<int:id>')
+def delete(id):
+    delete_task = ToDoList.query.get_or_404(id)
+    try:
+        db.session.delete(delete_task)
+        db.session.commit()
+        return redirect ('/todo')
+    except:
+        return flash ('Error: could not delete a task')
+
+@myapp_obj.route ('/update/<int:id>', methods = ['GET', 'POST'])
+def update(id):
+    form = TodoForm()
+    title = "Update Task"
+    task = ToDoList.query.get_or_404(id)
+    if request.method == 'POST':
+        task.task_name = request.form['task_name']
+        try:
+            db.session.commit()
+            return redirect ('/todo')
+        except:
+            return flash('Error: could not update a task')
+    else:
+        return render_template('update.html', task = task, form=form,title=title)
  
 @myapp_obj.route('/start_chat', methods=['GET', 'POST'])
 def start_chat():
@@ -91,7 +116,7 @@ def start_chat():
         return redirect(url_for('chat_room', room=chat_room))
     # get a list of all users except the current user
     users = User.query.filter(User.username != current_user.username).all()
-    return render_template('start_chat.html', form=form, users=users)
+    return render_template('startchat.html', form=form, users=users)
 
 @myapp_obj.route('/delete_chat/<room>', methods=['POST'])
 def delete_chat(room):
