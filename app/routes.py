@@ -116,7 +116,7 @@ def start_chat():
         return redirect(url_for('chat_room', room=chat_room))
     # get a list of all users except the current user
     users = User.query.filter(User.username != current_user.username).all()
-    return render_template('start_chat.html', form=form, users=users)
+    return render_template('startchat.html', form=form, users=users)
 
 @myapp_obj.route('/delete_chat/<room>', methods=['POST'])
 def delete_chat(room):
