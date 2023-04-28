@@ -186,7 +186,7 @@ def forgotpw():
         # check the password and if password matches
         if form.username.data==user.username and form.email.data==user.email:
     
-            flash(f'This is your password: {form.password.data}')
+            flash(f'This is your password: {user.password}')
             return redirect(url_for('forgotpw'))
         else:
             flash(f'Not registed account! Please try again')
