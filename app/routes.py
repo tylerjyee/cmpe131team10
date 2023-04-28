@@ -76,7 +76,7 @@ def todo():
         except:
             return flash ('Task could not be added')
     else:
-        tasks = ToDoList.query.all()
+        tasks = todo.query.all()
         return render_template ("todolist.html", tasks = tasks, form=form, title=title)
  
 @myapp_obj.route('/start_chat', methods=['GET', 'POST'])
