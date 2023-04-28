@@ -161,6 +161,12 @@ def contact():
 @myapp_obj.route("/profile", methods = ['GET','POST'])
 def profile():
     form = EditProfileForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.about_me = form.about_me.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('edit_profile'))
     return render_template('profile.html')
 
 @myapp_obj.route("/forgotpw", methods=['GET','POST'])
