@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField 
 from wtforms.validators import DataRequired, Email, Length
+
 class LoginForm(FlaskForm):
     username = StringField('Userename', validators=[DataRequired(), Length(min=3)])
     password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
     
 class ContactForm(FlaskForm):
@@ -23,12 +23,25 @@ class ComposeForm(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
-    email = StringField('Enter an email', validators=[DataRequired(), Email(message='Invalid email'),Length(max=50,min=3)])
+    email = StringField('Enter an email', validators=[DataRequired(),Length(max=50,min=3)]) #, Email(message='Invalid email')
     username = StringField('Enter an username', validators=[DataRequired(), Length(max=15,min=3)])
     password = PasswordField('Enter a new password', validators=[DataRequired(), Length(max=20,min=3)])
     password2 = PasswordField('Re-enter the password', validators=[DataRequired(), Length(max=20,min=3)])
     register = SubmitField('Register')
-    cancel = SubmitField('Cancel')
+
+
+class UnregisterForm(FlaskForm):
+    email = StringField('Enter email', validators=[DataRequired(),Length(max=50,min=3)]) #, Email(message='Invalid email')
+    username = StringField('Enter username', validators=[DataRequired(), Length(max=15,min=3)])
+    password = PasswordField('Enter password', validators=[DataRequired(), Length(max=20,min=3)])
+    password2 = PasswordField('Re-enter the password', validators=[DataRequired(), Length(max=20,min=3)])
+    unregister = SubmitField('Unregister')
+
+class ForgotpwForm(FlaskForm):
+    username = StringField('Enter username', validators=[DataRequired(), Length(max=15,min=3)])
+    password = PasswordField('Enter new password', validators=[DataRequired(), Length(max=20,min=3)])
+    password2 = PasswordField('Re-enter new password', validators=[DataRequired(), Length(max=20,min=3)])
+    submit = SubmitField('Submit')
 
 class TodoForm(FlaskForm):
     todoitem = StringField("To-Do Item", validators=[DataRequired()])

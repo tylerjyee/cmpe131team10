@@ -1,16 +1,16 @@
 {% extends "base.html"%}
 {% block content %}
-<h1>Sign In</h1>
+<h1>Forgot Password Reset</h1>
 <form action="" method="POST" novalidate>
     {{form.hidden_tag()}}
     <p> {{form.username.label}} <br>
        {{form.username(size=32)}}</p>
-
     <p> {{form.password.label}} <br>
        {{form.password(size=32)}}</p>
+     <p> {{form.password2.label}} <br>
+     {{form.password2(size=32)}}</p>
     
     <p>{{form.submit()}}</p>
-    <a href="{{url_for('forgotpw')}}"> Forgot Password? </a><br>
     <a href="{{url_for('register')}}"> Don't have an account? Sign up</a><br>
 </form>
 {% endblock %}

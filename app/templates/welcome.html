@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-{%include "menubar.html" %}
+<button onclick="window.location.href='/login'">Login</button>
+<button onclick="window.location.href='/register'">Register</button>
 <html>
     <head>
         <title>{{ title }} - my blog</title>
     </head>
     <body>
-        <li>THIS IS THE HOME PAGE</li>
-        <p> Welcome to our website!!!<br>
+        <li>THIS IS THE WELCOME PAGE</li>
+        <p>Welcome to our website!!!<br>
             On this website, you are able to email and chat with other users</p>
-
         {% block menubar%}
         {% endblock %}
     </body>
