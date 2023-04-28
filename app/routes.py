@@ -2,7 +2,7 @@ from flask import render_template, redirect, flash, url_for, request
 
 
 from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
-from .models import ChatRoom, User, ToDoList
+from .models import ChatRoom, User
 
 from app import myapp_obj, db
 from flask_login import current_user, login_user, logout_user, login_required
