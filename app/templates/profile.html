@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 {%include "menubar.html" %}
 <html>
-    <head>
-        <title>{{ title }} - my blog</title>
-    </head>
-    <body>
-        <li>User Profile</li>
-        <p>idk how this works<br>
-            you can edit this tho</p>
-        {% block menubar%}
-        {% endblock %}
-    </body>
+    {% block content %}
+    <h1>Edit Profile</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.about_me.label }}<br>
+            {{ form.about_me(cols=50, rows=4) }}<br>
+            {% for error in form.about_me.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
 </html>
 
