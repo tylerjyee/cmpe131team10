@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{%include "menubar.html" %}
+<html>
+    <head>
+        <title>{{ title }} - my blog</title>
+    </head>
+    <body>
+        <h1>Profile</h1>
+        <p> User: {{ user.username }}<br>
+            </p>
+
+        {% block menubar%}
+        {% endblock %}
+    </body>
+</html>
