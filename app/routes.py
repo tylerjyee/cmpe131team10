@@ -28,10 +28,11 @@ def login():
         if form.username.data==user.username and form.password.data==user.password:
             # login_user(user)
             #flash(f'Here are the input {form.username.data} and {form.password.data}')
-            return redirect('/home')
+            return redirect(url_for('home'))
         #if password doesn't match
         else:
             flash(f'Login unsuccessful for {form.username.data}. Please try again')
+            return redirect(url_for('welcome'))
     return render_template('login.html', form=form)
 
 @myapp_obj.route("/register", methods=['GET','POST'])
@@ -55,11 +56,11 @@ def unregister():
             db.session.delete(user)
             db.session.commit()
             flash(f'Successfully deleted an account for {form.username.data}')
-            return render_template(url_for('welcome'))
+            return redirect(url_for('login'))
         #if password doesn't match
         else:
             flash(f'Unsuccessful deleting an account for {form.username.data}. Please try again')
-            return render_template(url_for('unregister'))
+            return redirect(url_for('unregister'))
 
     return render_template('unregister.html', form=form)
 
