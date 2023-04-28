@@ -163,11 +163,10 @@ def profile():
     form = EditProfileForm()
     if form.validate_on_submit():
         current_user.username = form.username.data
-        current_user.about_me = form.about_me.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('edit_profile'))
-    return render_template('profile.html')
+    return render_template('profile.html', form=form)
 
 @myapp_obj.route("/forgotpw", methods=['GET','POST'])
 def forgotpw():
