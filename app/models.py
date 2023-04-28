@@ -1,18 +1,15 @@
-from app import db
+from app import db, login
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import login
 from flask_login import UserMixin
 
 
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(32), nullable=False)
-    password = db.Column(db.String(32), nullable=False)
-    email = db.Column(db.String(100), nullable=False)
-
-    posts = db.relationship('Post', backref='author', lazy='dynamic')
+    username = db.Column(db.String(32), unique=True)
+    password = db.Column(db.String(32), unique=True)
+    email = db.Column(db.String(128), unique=True)
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
@@ -21,27 +18,21 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def __repr__(self):
-        return f'<user {self.id}: {self.username}>'
+        return f'<user {self.id}: {self.username}:{self.email}>'
 
-class Post(db.Model):
+class ChatRoom(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(256))
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
-
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    name = db.Column(db.String(64), unique=True, index=True)
 
     def __repr__(self):
-        return f'<Post {self.id}: {self.body}>'
+        return f'<ChatRoom {self.name}>'
+
 
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
 
-class Contacts(db.Model):
-    __tablename__="contacts"
-    contactID = db.Column(db.Integer, primary_key=True)
-    fName =db.Column(db.String, nullable=False)
-    lName =db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=True)
+
+
 
 

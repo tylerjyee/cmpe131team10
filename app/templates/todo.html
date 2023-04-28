@@ -5,8 +5,18 @@
         <title>{{ title }} - my blog</title>
     </head>
     <body>
-        <li>THIS IS THE TODO PAGE</li>
+        <form action="" method="POST" novalidate>
+             {{form.hidden_tag()}}
+         <p> {{form.todoitem.label}} <br>
+            {{form.todoitem(size=32)}}</p>
+
+         <p> {{form.text.label}} <br>
+            {{form.text(size=32)}}</p>
+
+        <p>{{form.cancel()}}</p>
+
+        </form>
         {% block menubar%}
         {% endblock %}
     </body>
-</html>
+</html> 
