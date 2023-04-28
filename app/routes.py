@@ -2,7 +2,7 @@ from flask import render_template, redirect, flash, url_for, request
 
 
 from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
-from .models import ChatRoom, User
+from .models import ChatRoom, User, ToDoList
 
 from app import myapp_obj, db
 from flask_login import current_user, login_user, logout_user, login_required
@@ -67,7 +67,7 @@ def todo():
     #trys to create a new task on todo lists
     if request.method == 'POST':
         task_content = request.form['taskname']
-        new_task = TodoForm(task_name = task_content)
+        new_task = ToDoList(task_name = task_content)
         try:
             #adds new task
             db.session.add (new_task)
@@ -76,12 +76,12 @@ def todo():
         except:
             return flash ('Task could not be added')
     else:
-        tasks = TodoForm.query.all()
+        tasks = ToDoList.query.all()
         return render_template ("todolist.html", tasks = tasks, form=form, title=title)
     
 @myapp_obj.route('/delete/<int:id>')
 def delete(id):
-    delete_task = TodoForm.query.get_or_404(id)
+    delete_task = ToDoList.query.get_or_404(id)
     try:
         db.session.delete(delete_task)
         db.session.commit()
@@ -93,7 +93,7 @@ def delete(id):
 def update(id):
     form = TodoForm()
     title = "Update Task"
-    task = TodoForm.query.get_or_404(id)
+    task = ToDoList.query.get_or_404(id)
     if request.method == 'POST':
         task.task_name = request.form['task_name']
         try:
