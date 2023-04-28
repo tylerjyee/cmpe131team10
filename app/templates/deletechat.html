@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Delete Chat Room</h1>
+    <p>Are you sure you want to delete this chat room?</p>
+    <form method="post" action="{{ url_for('delete_chat', room=room) }}">
+        {{ csrf_token() }}
+        <input type="submit" value="Delete" class="btn btn-danger">
+    </form>
+{% endblock %}
