@@ -168,6 +168,10 @@ def profile():
         return redirect(url_for('profile'))
     return render_template('profile.html', form=form)
 
+@myapp_obj.route("/viewprofile", methods=['GET','POST'])
+def viewprofile():
+    return render_template('viewprofile.html')
+
 @myapp_obj.route("/forgotpw", methods=['GET','POST'])
 def forgotpw():
     form = ForgotpwForm()
