@@ -39,8 +39,7 @@ class UnregisterForm(FlaskForm):
 
 class ForgotpwForm(FlaskForm):
     username = StringField('Enter username', validators=[DataRequired(), Length(max=15,min=3)])
-    password = PasswordField('Enter new password', validators=[DataRequired(), Length(max=20,min=3)])
-    password2 = PasswordField('Re-enter new password', validators=[DataRequired(), EqualTo('password'), Length(max=20,min=3)])
+    email = StringField('Enter email', validators=[DataRequired(),Length(max=50,min=3)])
     submit = SubmitField('Submit')
 
 class TodoForm(FlaskForm):
