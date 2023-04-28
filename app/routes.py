@@ -155,6 +155,16 @@ def emails():
     
 @myapp_obj.route("/compose")
 def compose():
+    form = ComposeForm()
+    if request.method == 'POST':
+        if form.validate() == False:
+            flash('All fields required')
+            return render_template('compose.html', form=form)
+        else:
+            print('Email Sent')
+            return redirect('/email')
+    elif request.method == 'GET':
+        return render_template('compose.html', form=form)
     return render_template('compose.html')
 
 @myapp_obj.route('/contacts', methods = ['GET','POST'])
