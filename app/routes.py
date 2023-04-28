@@ -30,10 +30,11 @@ def login():
         if form.username.data==user.username and form.password.data==user.password:
             # login_user(user)
             #flash(f'Here are the input {form.username.data} and {form.password.data}')
-            return redirect('/home')
+            return redirect(url_for('home'))
         #if password doesn't match
         else:
             flash(f'Login unsuccessful for {form.username.data}. Please try again')
+            return redirect(url_for('login'))
     return render_template('login.html', form=form)
 
 @myapp_obj.route("/register", methods=['GET','POST'])
@@ -52,10 +53,16 @@ def unregister():
     form = UnregisterForm()
 
     if form.validate_on_submit():
-        hashed_password = generate_password_hash(form.password.data)
-        username = form.username.data
-        password = hashed_password
-
+        user=User.query.filter_by(username=form.username.data).first()
+        if form.username.data==user.username and form.email.data==user.email and form.password.data==user.password:
+            db.session.delete(user)
+            db.session.commit()
+            flash(f'Successfully deleted an account for {form.username.data}')
+            return redirect(url_for('login'))
+        #if password doesn't match
+        else:
+            flash(f'Unsuccessful deleting an account for {form.username.data}. Please try again')
+            return redirect(url_for('unregister'))
 
     return render_template('unregister.html', form=form)
 
@@ -164,8 +171,24 @@ def profile():
 
 @myapp_obj.route("/forgotpw", methods=['GET','POST'])
 def forgotpw():
+    #form = ForgotpwForm()
+    #if form.validate_on_submit():
+    #    flash(f'You have successfully reset your password')
+    #    return redirect('/home')
+    #return render_template('forgotpw.html', form=form)
+
     form = ForgotpwForm()
+    # if form inputs are valid
     if form.validate_on_submit():
-        flash(f'You have successfully reset your password')
-        return redirect('/home')
+        # search database for username and email
+        # user = User.query.filter_by(...)
+        user=User.query.filter_by(username=form.username.data).first()
+        # check the password and if password matches
+        if form.username.data==user.username and form.email.data==user.email:
+    
+            flash(f'This is your password: {form.password.data}')
+            return redirect(url_for('forgotpw'))
+        else:
+            flash(f'Not registed account! Please try again')
+            return redirect(url_for('forgotpw'))
     return render_template('forgotpw.html', form=form)
