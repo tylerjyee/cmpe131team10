@@ -1,13 +1,4 @@
-<form action="" method="POST" novalidate>
-    {{ form.hidden_tag() }}   
-    <p> {{ form.email.label }}<br>
-    {{ form.email }}</p>
-    <p>{{ form.subject.label }}<br>
-    {{ form.subject }}</p>
-    <p>{{ form.message.label }}<br>
-    {{ form.message }}</p>
-    <p>{{ form.submit }}</p>
-</form>
+
 
 <!DOCTYPE html>
 {%include "menubar.html" %}
@@ -20,8 +11,16 @@
     {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
     {% endfor %}
-
-
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}   
+        <p> {{ form.email.label }}<br>
+        {{ form.email }}</p>
+        <p>{{ form.subject.label }}<br>
+        {{ form.subject }}</p>
+        <p>{{ form.message.label }}<br>
+        {{ form.message }}</p>
+        <p>{{ form.submit }}</p>
+    </form>
         {% block menubar%}
         {% endblock %}
     </body>

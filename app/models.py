@@ -40,7 +40,9 @@ class ChatRoom(db.Model):
 def load_user(id):
     return User.query.get(int(id))
 
+<<<<<<<<< Temporary merge branch 1
+ 
 
 
-
-
+=========
+>>>>>>>>> Temporary merge branch 2
