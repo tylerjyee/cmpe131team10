@@ -25,7 +25,7 @@ For our webpage we used Python 3, Flask, Flask Forms, Flask Login, SQL Alchemy, 
 - If you have account already and forgot your password, you can retreive your password by filling out the form in the login page
 
 ### Responsiblities
--Login, Logout, Create User(Register Account), Delete Account: Taehun
--Compose Email, Forgot password, Delete todo item/list, Contact Form: Tyler
--Delete & Flag Email, Search Emails, Edit User Profile: Liza
--Create todo list, Start chat, Delete chat: Phillip
+- Login, Logout, Create User(Register Account), Delete Account: Taehun
+- Compose Email, Forgot password, Delete todo item/list, Contact Form: Tyler
+- Delete & Flag Email, Search Emails, Edit User Profile: Liza
+- Create todo list, Start chat, Delete chat: Phillip
