@@ -158,7 +158,7 @@ def contact():
     elif request.method == 'GET':
         return render_template('contacts.html', form=form)
     
-@myapp_obj.route("/profile", methods = ['GET','POST'])
+@myapp_obj.route("/editprofile", methods = ['GET','POST'])
 def profile():
     form = EditProfileForm()
     if form.validate_on_submit():
