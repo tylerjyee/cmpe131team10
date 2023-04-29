@@ -166,7 +166,7 @@ def profile():
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('profile'))
-    return render_template('profile.html', form=form)
+    return render_template('editprofile.html', form=form)
 
 @myapp_obj.route("/profile", methods=['GET','POST'])
 def viewprofile():
