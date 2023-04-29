@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 {%include "menubar.html" %}
 <html>
+    <head>
+        <title>{{ title }} - my blog</title>
+    </head>
+    <body>
+        <h1>Profile</h1>
+        <p> User: {{ user.username }}<br>
+            <button onclick="window.location.href='editprofile'">Edit profile</button> 
+            </p>
+
+        {% block menubar%}
+        {% endblock %}
+    </body>
+</html>
+
+<!DOCTYPE html>
+{%include "menubar.html" %}
+<html>
     {% block content %}
     <h1>Edit Profile</h1>
     <form action="" method="post">
