@@ -111,7 +111,7 @@ def update(id):
     else:
         return render_template('update.html', task = task, form=form,title=title)
 
-@myapp_obj.route('/create_chat_room', methods=['GET', 'POST'])
+@myapp_obj.route('/start_chat', methods=['GET', 'POST'])
 @login_required
 def create_chat_room():
     form = ChatRoomForm()
