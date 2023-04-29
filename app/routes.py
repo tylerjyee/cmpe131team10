@@ -2,7 +2,7 @@ from flask import render_template, redirect, flash, url_for, request
 
 
 from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
-from .models import ChatRoom, User
+from .models import ChatRoom, User, ToDoList
 
 from app import myapp_obj, db
 from flask_login import current_user, login_user, logout_user, login_required
@@ -144,7 +144,7 @@ def delete_chat(room):
 def emails():
     return render_template('emails.html')
     
-@myapp_obj.route("/compose")
+@myapp_obj.route("/compose", methods = ['GET','POST'])
 def compose():
     form = ComposeForm()
     if request.method == 'POST':
@@ -156,7 +156,6 @@ def compose():
             return redirect('/email')
     elif request.method == 'GET':
         return render_template('compose.html', form=form)
-    return render_template('compose.html')
 
 @myapp_obj.route('/contacts', methods = ['GET','POST'])
 def contact():
