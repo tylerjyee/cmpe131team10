@@ -15,7 +15,6 @@ class ContactForm(FlaskForm):
    submit = SubmitField("Send")
 
 class ComposeForm(FlaskForm):
-    name = StringField("Name", validators=[DataRequired()])
     email = StringField("Email", validators=[DataRequired()])
     subject = StringField("Subject", validators=[DataRequired()])
     message = TextAreaField("Message", validators=[DataRequired()])
