@@ -160,7 +160,7 @@ def compose():
             return render_template('compose.html', form=form)
         else:
             print('Email Sent')
-            return redirect('/email')
+            return redirect('/emails')
     elif request.method == 'GET':
         return render_template('compose.html', form=form)
 
