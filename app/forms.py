@@ -52,3 +52,7 @@ class StartChatForm(FlaskForm):
 
 class DeleteChatForm(FlaskForm):
     submit = SubmitField('Delete Chat')
+
+class EditProfileForm(FlaskForm):
+    username = StringField("Name", validators=[DataRequired()])
+    submit = SubmitField('Submit')

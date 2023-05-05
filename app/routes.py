@@ -1,7 +1,7 @@
 from flask import render_template, redirect, flash, url_for, request
 
 
-from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
+from .forms import EditProfileForm, LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
 from .models import ChatRoom, User, ToDoList
 
 from app import myapp_obj, db
@@ -179,8 +179,18 @@ def contact():
     elif request.method == 'GET':
         return render_template('contacts.html', form=form)
     
-@myapp_obj.route("/profile")
+@myapp_obj.route("/editprofile", methods = ['GET','POST'])
 def profile():
+    form = EditProfileForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('profile'))
+    return render_template('editprofile.html', form=form)
+
+@myapp_obj.route("/profile", methods=['GET','POST'])
+def viewprofile():
     return render_template('profile.html')
 
 @myapp_obj.route("/forgotpw", methods=['GET','POST'])

@@ -5,11 +5,14 @@
         <title>{{ title }} - my blog</title>
     </head>
     <body>
-        <li>Profile</li>
-        <p>idk how this works<br>
-            you can edit this tho</p>
+        <h1>Profile</h1>
+        <p> User: {{ user.username }}<br>
+            <button onclick="window.location.href='/editprofile'">Edit profile</button> 
+            </p>
+
         {% block menubar%}
         {% endblock %}
     </body>
 </html>
+
 
