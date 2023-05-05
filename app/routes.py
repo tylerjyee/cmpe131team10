@@ -121,11 +121,18 @@ def start_chat():
         # get the username of the person to chat with
         chat_with = form.chat_with.data
         # create a chat room with the current user and the person to chat with
-        chat_room = current_user.username + '-' + chat_with
-        # redirect to the chat room
-        return redirect(url_for('chat_room', room=chat_room))
+        if current_user.is_authenticated:
+            chat_room = current_user.username + '-' + chat_with
+            # redirect to the chat room
+            return redirect(url_for('chat_room', room=chat_room))
+        else:
+            flash('You must be logged in to start a chat.')
+            return redirect(url_for('login'))
     # get a list of all users except the current user
-    users = User.query.filter(User.username != current_user.username).all()
+    if current_user.is_authenticated:
+        users = User.query.filter(User.username != current_user.username).all()
+    else:
+        users = []
     return render_template('startchat.html', form=form, users=users)
 
 @myapp_obj.route('/delete_chat/<room>', methods=['POST'])
@@ -145,20 +152,20 @@ def delete_chat(room):
     
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
+    return render_template('emails.html')
+    
+@myapp_obj.route("/compose", methods = ['GET','POST'])
+def compose():
     form = ComposeForm()
     if request.method == 'POST':
         if form.validate() == False:
             flash('All fields required')
-            return render_template('emails.html', form=form)
+            return render_template('compose.html', form=form)
         else:
             print('Email Sent')
-            return redirect('/home')
+            return redirect('/emails')
     elif request.method == 'GET':
-        return render_template('emails.html', form=form)
-    
-@myapp_obj.route("/compose")
-def compose():
-    return render_template('compose.html')
+        return render_template('compose.html', form=form)
 
 @myapp_obj.route('/contacts', methods = ['GET','POST'])
 def contact():
