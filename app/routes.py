@@ -27,15 +27,18 @@ def login():
         # user = User.query.filter_by(...)
         user=User.query.filter_by(username=form.username.data).first()
         # check the password and if password matches
-        if form.username.data==user.username and form.password.data==user.password:
-            # login_user(user)
-            #flash(f'Here are the input {form.username.data} and {form.password.data}')
-            return redirect(url_for('home'))
+        try:
+            if form.username.data==user.username and form.password.data==user.password:
+                # login_user(user)
+                #flash(f'Here are the input {form.username.data} and {form.password.data}')
+                flash(f'Login successful for {form.username.data}')
+                return redirect(url_for('home'))
+        except AttributeError:
         #if password doesn't match
-        else:
-            flash(f'Login unsuccessful for {form.username.data}. Please try again')
-            return redirect(url_for('login'))
+            flash(f'Login unsuccessful. Please try again')
+            #return redirect(url_for('login'))
     return render_template('login.html', form=form)
+
 
 @myapp_obj.route("/register", methods=['GET','POST'])
 def register():
