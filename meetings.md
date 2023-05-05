@@ -19,11 +19,18 @@ meeting schedule and team lead.
 ### 2022-04-21 at 10:45
 - Physical Meeting, Everyone attended
 - Team updates: Working on implementing requirements from milestone 2
-- Taehun: Worked on and completed the Register page and Login pages. Going to work on Logout and
+- Taehun: Worked on and completed the Register page and Login pages. Going to work on Logout
 - Phillip: Hasn't started but will work on create todo list, start chat, delete chat
 - Tyler: Worked on compose email and contact form. Have delete todo list/items on stand-by waiting for the create todo list feature to be created.
 - Liza: Started work on editing profiles page. Need to work on delete email and search email
 - Summarize group progress: Each member is getting done with each requirement that needs to be done.
-### 2022-04-30 at 10:00
-### 2022-05-07 at 10:00
-### 2022-05-14 at 10:00
+### 2022-04-30 at 11:00
+- Physical Meeting, Everyone attended
+- Team updates: Everyone is still working on implementing requirements from milestone 2
+- Taehun: Implemented every assigned requirement and is fixing bugs. Connected to database and register.
+- Phillip: Finished code for chat and todo features. Working out the bugs
+- Tyler: Implemented all requirements but helping fix bugs with general code. 
+- Liza: Got VS Code working and starting to working on requirements
+- Summarize group progress: Most members are done implementing their requirements and fixing all of errors that pop up
+### 2022-05-5 at 10:00
+### 2022-04-12 at 11:00

@@ -30,10 +30,11 @@ def login():
         if form.username.data==user.username and form.password.data==user.password:
             # login_user(user)
             #flash(f'Here are the input {form.username.data} and {form.password.data}')
-            return redirect('/home')
+            return redirect(url_for('home'))
         #if password doesn't match
         else:
             flash(f'Login unsuccessful for {form.username.data}. Please try again')
+            return redirect(url_for('login'))
     return render_template('login.html', form=form)
 
 @myapp_obj.route("/register", methods=['GET','POST'])
@@ -52,10 +53,16 @@ def unregister():
     form = UnregisterForm()
 
     if form.validate_on_submit():
-        hashed_password = generate_password_hash(form.password.data)
-        username = form.username.data
-        password = hashed_password
-
+        user=User.query.filter_by(username=form.username.data).first()
+        if form.username.data==user.username and form.email.data==user.email and form.password.data==user.password:
+            db.session.delete(user)
+            db.session.commit()
+            flash(f'Successfully deleted an account for {form.username.data}')
+            return redirect(url_for('login'))
+        #if password doesn't match
+        else:
+            flash(f'Unsuccessful deleting an account for {form.username.data}. Please try again')
+            return redirect(url_for('unregister'))
 
     return render_template('unregister.html', form=form)
 
@@ -111,11 +118,18 @@ def start_chat():
         # get the username of the person to chat with
         chat_with = form.chat_with.data
         # create a chat room with the current user and the person to chat with
-        chat_room = current_user.username + '-' + chat_with
-        # redirect to the chat room
-        return redirect(url_for('chat_room', room=chat_room))
+        if current_user.is_authenticated:
+            chat_room = current_user.username + '-' + chat_with
+            # redirect to the chat room
+            return redirect(url_for('chat_room', room=chat_room))
+        else:
+            flash('You must be logged in to start a chat.')
+            return redirect(url_for('login'))
     # get a list of all users except the current user
-    users = User.query.filter(User.username != current_user.username).all()
+    if current_user.is_authenticated:
+        users = User.query.filter(User.username != current_user.username).all()
+    else:
+        users = []
     return render_template('startchat.html', form=form, users=users)
 
 @myapp_obj.route('/delete_chat/<room>', methods=['POST'])
@@ -135,16 +149,20 @@ def delete_chat(room):
     
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
+    return render_template('emails.html')
+    
+@myapp_obj.route("/compose", methods = ['GET','POST'])
+def compose():
     form = ComposeForm()
     if request.method == 'POST':
         if form.validate() == False:
             flash('All fields required')
-            return render_template('emails.html', form=form)
+            return render_template('compose.html', form=form)
         else:
             print('Email Sent')
-            return redirect('/home')
+            return redirect('/email')
     elif request.method == 'GET':
-        return render_template('emails.html', form=form)
+        return render_template('compose.html', form=form)
 
 @myapp_obj.route('/contacts', methods = ['GET','POST'])
 def contact():
@@ -174,8 +192,24 @@ def viewprofile():
 
 @myapp_obj.route("/forgotpw", methods=['GET','POST'])
 def forgotpw():
+    #form = ForgotpwForm()
+    #if form.validate_on_submit():
+    #    flash(f'You have successfully reset your password')
+    #    return redirect('/home')
+    #return render_template('forgotpw.html', form=form)
+
     form = ForgotpwForm()
+    # if form inputs are valid
     if form.validate_on_submit():
-        flash(f'You have successfully reset your password')
-        return redirect('/home')
+        # search database for username and email
+        # user = User.query.filter_by(...)
+        user=User.query.filter_by(username=form.username.data).first()
+        # check the password and if password matches
+        if form.username.data==user.username and form.email.data==user.email:
+    
+            flash(f'This is your password: {user.password}')
+            return redirect(url_for('forgotpw'))
+        else:
+            flash(f'Not registed account! Please try again')
+            return redirect(url_for('forgotpw'))
     return render_template('forgotpw.html', form=form)
