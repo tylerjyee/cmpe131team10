@@ -32,5 +32,12 @@ meeting schedule and team lead.
 - Tyler: Implemented all requirements but helping fix bugs with general code. 
 - Liza: Got VS Code working and starting to working on requirements
 - Summarize group progress: Most members are done implementing their requirements and fixing all of errors that pop up
-### 2022-05-5 at 10:00
+### 2022-05-5 at 11:30
+- Physical Meeting, Everyone attended
+- Team updates: Some members are finishing requirements from milestone 2. Other members are going to work on styling elements and the additional feature in milestone 3.
+- Taehun: Implemented every assigned requirement from milestone 2. Planning on working on clock feature.
+- Phillip: Adjusting the chat function and figure out todo error
+- Tyler: Implemented all requirements from milestone 2. Working on looking into styling
+- Liza: Working on search email, delete email, flag email. Fixing edit user profile
+- Summarize group progress: Trying to finish up the website and all of its features
 ### 2022-04-12 at 11:00
