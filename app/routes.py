@@ -1,7 +1,7 @@
 from flask import render_template, redirect, flash, url_for, request
 
 
-from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
+from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm, DeleteChatForm
 from .models import ChatRoom, User, ToDoList
 
 from app import myapp_obj, db
@@ -16,7 +16,7 @@ def welcome():
 @myapp_obj.route("/home")
 def home():
     return render_template('home.html')
-
+"""
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
     # create form
@@ -38,6 +38,21 @@ def login():
             flash(f'Login unsuccessful. Please try again')
             #return redirect(url_for('login'))
     return render_template('login.html', form=form)
+    """
+
+@myapp_obj.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is not None and user.check_password(form.password.data):
+            login_user(user, remember=form.remember_me.data)
+            flash('Login successful.')
+            next_page = request.args.get('next')
+            return redirect(next_page or url_for('home'))
+        else:
+            flash('Invalid username or password.')
+    return render_template('login.html', title='Sign In', form=form)
 
 
 @myapp_obj.route("/register", methods=['GET','POST'])
@@ -113,7 +128,7 @@ def update(id):
             return flash('Error: could not update a task')
     else:
         return render_template('update.html', task = task, form=form,title=title)
- 
+"""
 @myapp_obj.route('/start_chat', methods=['GET', 'POST'])
 def start_chat():
     form = StartChatForm()
@@ -133,23 +148,25 @@ def start_chat():
         users = User.query.filter(User.username != current_user.username).all()
     else:
         users = []
-    return render_template('startchat.html', form=form, users=users)
+    return render_template('startchat.html', form=form, user=users)
 
 @myapp_obj.route('/delete_chat/<room>', methods=['POST'])
 def delete_chat(room):
-    # ensure that the current user is part of the chat room
-    if current_user.username in room:
-        # delete the chat room
-        chat_room = ChatRoom.query.filter_by(name=room).first()
-        db.session.delete(chat_room)
-        db.session.commit()
-        # redirect to the home page
-        return redirect(url_for('home'))
-    else:
-        # if the current user is not part of the chat room, return an error message
-        flash('You do not have permission to delete this chat room.')
-        return redirect(url_for('home'))
-    
+    form = DeleteChatForm()
+    if form.validate_on_submit():
+        # ensure that the current user is part of the chat room
+        if current_user.username in room:
+            # delete the chat room
+            chat_room = ChatRoom.query.filter_by(name=room).first()
+            db.session.delete(chat_room)
+            db.session.commit()
+            # redirect to the home page
+            return redirect(url_for('home'))
+        else:
+            # if the current user is not part of the chat room, return an error message
+            flash('You do not have permission to delete this chat room.')
+            return redirect(url_for('home'))
+"""
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
     return render_template('emails.html')
