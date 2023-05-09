@@ -1,4 +1,4 @@
-from flask import render_template, redirect, flash, url_for, request
+from flask import render_template, redirect, flash, url_for, session, request
 
 
 from .forms import EditProfileForm, LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
@@ -156,7 +156,7 @@ def compose():
             return render_template('compose.html', form=form)
         else:
             print('Email Sent')
-            return redirect('/email')
+            return redirect('/emails')
     elif request.method == 'GET':
         return render_template('compose.html', form=form)
 
