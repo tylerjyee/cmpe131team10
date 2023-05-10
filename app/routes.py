@@ -1,4 +1,4 @@
-from flask import render_template, redirect, flash, url_for, request
+from flask import render_template, redirect, flash, url_for, session, request
 
 
 from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
@@ -83,7 +83,7 @@ def todo():
         except:
             return flash ('Task could not be added')
     else:
-        tasks = ToDoList.query.all()
+        tasks = todo.query.all()
         return render_template ("todolist.html", tasks = tasks, form=form, title=title)
     
 @myapp_obj.route('/delete/<int:id>')
@@ -118,18 +118,11 @@ def start_chat():
         # get the username of the person to chat with
         chat_with = form.chat_with.data
         # create a chat room with the current user and the person to chat with
-        if current_user.is_authenticated:
-            chat_room = current_user.username + '-' + chat_with
-            # redirect to the chat room
-            return redirect(url_for('chat_room', room=chat_room))
-        else:
-            flash('You must be logged in to start a chat.')
-            return redirect(url_for('login'))
+        chat_room = current_user.username + '-' + chat_with
+        # redirect to the chat room
+        return redirect(url_for('chat_room', room=chat_room))
     # get a list of all users except the current user
-    if current_user.is_authenticated:
-        users = User.query.filter(User.username != current_user.username).all()
-    else:
-        users = []
+    users = User.query.filter(User.username != current_user.username).all()
     return render_template('startchat.html', form=form, users=users)
 
 @myapp_obj.route('/delete_chat/<room>', methods=['POST'])
