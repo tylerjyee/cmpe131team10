@@ -33,6 +33,7 @@ meeting schedule and team lead.
 - Liza: Got VS Code working and starting to working on requirements
 - Summarize group progress: Most members are done implementing their requirements and fixing all of errors that pop up
 ### 2022-05-5 at 10:00
+<<<<<<< HEAD
 - Physical Meeting, Everyone attended
  - Team updates: Some members are finishing requirements from milestone 2. Other members are going to work on styling elements and the additional feature in milestone 3.
  - Taehun: Implemented every assigned requirement from milestone 2. Planning on working on clock feature.
@@ -41,3 +42,6 @@ meeting schedule and team lead.
  - Liza: Working on search email, delete email, flag email. Fixing edit user profile
  - Summarize group progress: Trying to finish up the website and all of its features
 ### 2022-05-12 at 11:00
+=======
+### 2022-04-12 at 11:00
+>>>>>>> parent of dcec03d (Merge pull request #26 from tylerjyee/TylerBranch)
