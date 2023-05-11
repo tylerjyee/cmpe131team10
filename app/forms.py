@@ -46,9 +46,9 @@ class TodoForm(FlaskForm):
     text = TextAreaField("Text.", validators=[DataRequired()])
     cancel = SubmitField('Cancel')
 
-class StartChatForm(FlaskForm):
-    chat_with = StringField('Chat With', validators=[DataRequired()])
-    submit = SubmitField('Start Chat')
+class ChatRoomForm(FlaskForm):
+    name = StringField('Chat Room Name', validators=[DataRequired()])
+    submit = SubmitField('Create Chat Room')
 
 class DeleteChatForm(FlaskForm):
     submit = SubmitField('Delete Chat')

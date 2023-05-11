@@ -1,7 +1,7 @@
 from flask import render_template, redirect, flash, url_for, session, request
 
 
-from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
+from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, ChatRoomForm
 from .models import ChatRoom, User, ToDoList
 
 from app import myapp_obj, db
@@ -110,11 +110,13 @@ def update(id):
             return flash('Error: could not update a task')
     else:
         return render_template('update.html', task = task, form=form,title=title)
- 
+
 @myapp_obj.route('/start_chat', methods=['GET', 'POST'])
-def start_chat():
-    form = StartChatForm()
+@login_required
+def create_chat_room():
+    form = ChatRoomForm()
     if form.validate_on_submit():
+<<<<<<< HEAD
         # get the username of the person to chat with
         chat_with = form.chat_with.data
         # create a chat room with the current user and the person to chat with
@@ -124,6 +126,15 @@ def start_chat():
     # get a list of all users except the current user
     users = User.query.filter(User.username != current_user.username).all()
     return render_template('startchat.html', form=form, users=users)
+=======
+        chat_room = ChatRoom(name=form.name.data)
+        db.session.add(chat_room)
+        db.session.commit()
+        flash('Chat room created successfully!')
+        return redirect(url_for('start_chat'))
+
+    return render_template('create_chat_room.html', form=form)
+>>>>>>> 80c2b36c63ff1f0e475681786e3672b4ecf866cb
 
 @myapp_obj.route('/delete_chat/<room>', methods=['POST'])
 def delete_chat(room):
