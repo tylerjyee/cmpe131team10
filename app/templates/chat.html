@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{%include "menubar.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var socket = io.connect("http://127.0.0.1:5000/chat");
+        socket.on('connect', function() {
+            socket.send("User connected!");
+        });
+
+        socket.on('message', function(data){
+            $('#messages').append($('<p>').text(data));
+        });
+
+        $('#sendBtn').on('click', function () {
+            var message = $('#username').val() + ': ' + $('#message').val();
+            socket.emit('chat_message', message);
+            $('#message').val('');
+            $('#messages').append($('<p>').text(message)); // Display sent message
+        });
+    });
+</script>
+<div id="messages" style="margin: 0 auto; width: 60%; text-align: left">
+
+</div>
+<input type="text" id="username" placeholder="Username" required>
+<input type="text" id="message" placeholder="Message" required>
+<button id="sendBtn">Send</button>
+</body>
+</html>
+

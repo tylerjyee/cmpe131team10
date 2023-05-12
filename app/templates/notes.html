@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{%include "menubar.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+</head>
+<body>
+    <h1>Notes</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash-messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <style>
+        .form-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100vh;
+        }
+
+        .note-input {
+            width: 300px;
+            height: 150px;
+        }
+
+        .notes-section {
+            width: 50%;
+        }
+
+        .input-section {
+            width: 50%;
+            padding-left: 20px;
+        }
+
+        .delete-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="form-container">
+        <div class="notes-section">
+            <h2>Your Notes</h2>
+            {% if notes %}
+                <ul class="notes-list">
+                    {% for note in notes %}
+                        <li>
+                            <strong>{{ note.subject }}:</strong> {{ note.content }}
+                            <form method="POST" action="/notes/delete/{{ loop.index0 }}">
+                                <button class="delete-button" type="submit">Delete</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No notes found.</p>
+            {% endif %}
+        </div>
+
+        <div class="input-section">
+            <form method="POST" action="/notes">
+                <input type="text" name="subject" placeholder="Enter a subject" required>
+                <br>
+                <textarea class="note-input" name="note" placeholder="Enter a note" required></textarea>
+                <br>
+                <button type="submit">Add Note</button>
+            </form>
+        </div>
+    </div>
+

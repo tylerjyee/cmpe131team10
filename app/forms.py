@@ -42,13 +42,13 @@ class ForgotpwForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class TodoForm(FlaskForm):
-    todoitem = StringField("To-Do Item", validators=[DataRequired()])
+    task = StringField("To-Do Item", validators=[DataRequired()])
     text = TextAreaField("Text.", validators=[DataRequired()])
     cancel = SubmitField('Cancel')
 
-class StartChatForm(FlaskForm):
-    chat_with = StringField('Chat With', validators=[DataRequired()])
-    submit = SubmitField('Start Chat')
+class ChatRoomForm(FlaskForm):
+    name = StringField('Chat Room Name', validators=[DataRequired()])
+    submit = SubmitField('Create Chat Room')
 
 class DeleteChatForm(FlaskForm):
     submit = SubmitField('Delete Chat')

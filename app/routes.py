@@ -1,14 +1,14 @@
-from flask import render_template, redirect, flash, url_for, request
+from flask import Flask, render_template, redirect, flash, url_for, request
+from flask_socketio import SocketIO, send
 
 
-from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, StartChatForm
+from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, ChatRoomForm
 from .models import ChatRoom, User, ToDoList
 
 from app import myapp_obj, db
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 #from flask_mail import Mail, Message
-
 @myapp_obj.route("/")
 def welcome():
     return render_template('welcome.html')
@@ -64,87 +64,93 @@ def unregister():
 
     return render_template('unregister.html', form=form)
 
+todos = []
+
 @myapp_obj.route('/todo', methods=['GET', 'POST'])
 def todo():
-    #cretes to-do list form
-    form = TodoForm()
-    title = "To-Do List"
-    #trys to create a new task on todo lists
+    # Add a new todo task
     if request.method == 'POST':
-        task_content = request.form['taskname']
-        new_task = ToDoList(task_name = task_content)
-        try:
-            #adds new task
-            db.session.add (new_task)
-            db.session.commit()
-            return redirect('To-do List')
-        except:
-            return flash ('Task could not be added')
-    else:
-        tasks = ToDoList.query.all()
-        return render_template ("todolist.html", tasks = tasks, form=form, title=title)
-    
-@myapp_obj.route('/delete/<int:id>')
-def delete(id):
-    delete_task = ToDoList.query.get_or_404(id)
-    try:
-        db.session.delete(delete_task)
-        db.session.commit()
-        return redirect ('/todo')
-    except:
-        return flash ('Error: could not delete a task')
+        todo_content = request.form.get('todo')
+        if todo_content:
+            todos.append({"task": todo_content, "done": False})
+        return redirect(url_for('todo'))
 
-@myapp_obj.route ('/update/<int:id>', methods = ['GET', 'POST'])
+    # Render the todo template and pass the list of todos
+    return render_template('todo.html', todos=todos)
+    
+@myapp_obj.route('/delete_task/<task>', methods=['GET', 'POST'])
+def delete_task(task):
+    # Find and remove the specified task from the todos list
+    for todo in todos:
+        if todo['task'] == task:
+            todos.remove(todo)
+            break
+    return redirect(url_for('todo'))
+
+@myapp_obj.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
     form = TodoForm()
     title = "Update Task"
     task = ToDoList.query.get_or_404(id)
     if request.method == 'POST':
+        # Update the task with the new task name
         task.task_name = request.form['task_name']
         try:
             db.session.commit()
-            return redirect ('/todo')
+            return redirect('/todo')
         except:
             return flash('Error: could not update a task')
     else:
-        return render_template('update.html', task = task, form=form,title=title)
- 
-@myapp_obj.route('/start_chat', methods=['GET', 'POST'])
-def start_chat():
-    form = StartChatForm()
-    if form.validate_on_submit():
-        # get the username of the person to chat with
-        chat_with = form.chat_with.data
-        # create a chat room with the current user and the person to chat with
-        if current_user.is_authenticated:
-            chat_room = current_user.username + '-' + chat_with
-            # redirect to the chat room
-            return redirect(url_for('chat_room', room=chat_room))
-        else:
-            flash('You must be logged in to start a chat.')
-            return redirect(url_for('login'))
-    # get a list of all users except the current user
-    if current_user.is_authenticated:
-        users = User.query.filter(User.username != current_user.username).all()
-    else:
-        users = []
-    return render_template('startchat.html', form=form, users=users)
+        return render_template('update.html', task=task, form=form, title=title)
 
-@myapp_obj.route('/delete_chat/<room>', methods=['POST'])
-def delete_chat(room):
-    # ensure that the current user is part of the chat room
-    if current_user.username in room:
-        # delete the chat room
-        chat_room = ChatRoom.query.filter_by(name=room).first()
-        db.session.delete(chat_room)
-        db.session.commit()
-        # redirect to the home page
-        return redirect(url_for('home'))
-    else:
-        # if the current user is not part of the chat room, return an error message
-        flash('You do not have permission to delete this chat room.')
-        return redirect(url_for('home'))
-    
+app = Flask(__name__)
+app.config['SECRET'] = "secret!123"
+socketio = SocketIO(app, cors_allowed_origins="*")
+
+@myapp_obj.route("/chat", methods=["GET", "POST"])
+def chat():
+    # Render the chat template
+    return render_template("chat.html")
+
+@socketio.on('message')
+def handle_message(message):
+    print("Received message: " + message)
+    if message != "User connected!":
+        send(message, broadcast=True)
+
+if __name__ == "__routes__":
+    socketio.run(app, host="http://127.0.0.1:5000/chat")
+
+notes_list = []
+
+@myapp_obj.route("/notes", methods=["GET", "POST"])
+def view_notes():
+    # View and add notes
+    if request.method == "POST":
+        # Retrieve subject and note content from the form
+        subject = request.form.get("subject")
+        note_content = request.form.get("note")
+        if subject and note_content:
+            # Create a note dictionary
+            note = {"subject": subject, "content": note_content}
+            # Append the note to the notes list
+            notes_list.append(note)
+            flash("Note added successfully.")
+            return redirect("/notes")
+
+    # Render the notes template and pass the notes list
+    return render_template("notes.html", notes=notes_list)
+
+
+@myapp_obj.route("/notes/delete/<int:index>", methods=["POST"])
+def delete_note(index):
+    if index < len(notes_list):
+        # Delete the note at the specified index from the notes list
+        del notes_list[index]
+        flash("Note deleted successfully.")
+    return redirect(url_for('view_notes'))
+
+
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
     return render_template('emails.html')

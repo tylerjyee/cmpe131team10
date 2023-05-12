@@ -3,8 +3,6 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
-
-
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True)
@@ -19,21 +17,16 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f'<user {self.id}: {self.username}:{self.email}>'
-    
-class ToDoList(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    task_name = db.Column(db.String(64))
+   
+class ToDoList(db.Model):
+    __tablename__ = 'to_do_list'
+    id = db.Column(db.Integer, primary_key=True)
+    task_name = db.Column(db.String(200))
     complete = db.Column(db.Boolean)
-
-    def __repr__ (self):
-        return f'<Task {self.id} : {self.task_name}>'
 
 class ChatRoom(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, index=True)
-
-    def __repr__(self):
-        return f'<ChatRoom {self.name}>'
 
 
 @login.user_loader
