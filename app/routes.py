@@ -116,22 +116,28 @@ def handle_message(message):
 if __name__ == "__routes__":
     socketio.run(app, host="http://127.0.0.1:5000/chat")    
 
+notes_list = []
 
-@myapp_obj.route('/delete_chat/<room>', methods=['POST'])
-def delete_chat(room):
-    # ensure that the current user is part of the chat room
-    if current_user.username in room:
-        # delete the chat room
-        chat_room = ChatRoom.query.filter_by(name=room).first()
-        db.session.delete(chat_room)
-        db.session.commit()
-        # redirect to the home page
-        return redirect(url_for('home'))
-    else:
-        # if the current user is not part of the chat room, return an error message
-        flash('You do not have permission to delete this chat room.')
-        return redirect(url_for('home'))
-    
+@myapp_obj.route("/notes", methods=["GET", "POST"])
+def view_notes():
+    if request.method == "POST":
+        subject = request.form.get("subject")
+        note_content = request.form.get("note")
+        if subject and note_content:
+            note = {"subject": subject, "content": note_content}
+            notes_list.append(note)
+            flash("Note added successfully.")
+            return redirect("/notes")
+
+    return render_template("notes.html", notes=notes_list)
+
+@myapp_obj.route("/notes/delete/<int:index>", methods=["POST"])
+def delete_note(index):
+    if index < len(notes_list):
+        del notes_list[index]
+        flash("Note deleted successfully.")
+    return redirect(url_for('view_notes'))
+
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
     return render_template('emails.html')
