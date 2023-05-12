@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f'<user {self.id}: {self.username}:{self.email}>'
-    
+   
 class ToDoList(db.Model):
     __tablename__ = 'to_do_list'
     id = db.Column(db.Integer, primary_key=True)
@@ -27,9 +27,6 @@ class ToDoList(db.Model):
 class ChatRoom(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, index=True)
-
-    def __repr__(self):
-        return f'<ChatRoom {self.name}>'
 
 
 @login.user_loader

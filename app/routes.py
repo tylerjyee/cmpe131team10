@@ -1,4 +1,5 @@
-from flask import render_template, redirect, flash, url_for, request
+from flask import Flask, render_template, redirect, flash, url_for, request
+from flask_socketio import SocketIO, send
 
 
 from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, ChatRoomForm
@@ -8,7 +9,6 @@ from app import myapp_obj, db
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 #from flask_mail import Mail, Message
-
 @myapp_obj.route("/")
 def welcome():
     return render_template('welcome.html')
@@ -66,32 +66,26 @@ def unregister():
 
     return render_template('unregister.html', form=form)
 
+todos = []
+
 @myapp_obj.route('/todo', methods=['GET', 'POST'])
 def todo():
-    form = TodoForm()
-    title = "To-Do List"
     if request.method == 'POST':
-        task_content = request.form['taskname']
-        new_task = ToDoList(task_name=task_content)
-        try:
-            db.session.add(new_task)
-            db.session.commit()
-            return redirect('/')
-        except:
-            flash('Task could not be added')
+        todo_content = request.form.get('todo')
+        if todo_content:
+            todos.append({"task": todo_content, "done": False})
+        return redirect(url_for('todo'))
 
-    tasks = ToDoList.query.all()
-    return render_template("todolist.html", tasks=tasks, form=form, title=title)
+    return render_template('todo.html', todos=todos)
     
-@myapp_obj.route('/delete/<int:id>')
-def delete(id):
-    delete_task = ToDoList.query.get_or_404(id)
-    try:
-        db.session.delete(delete_task)
-        db.session.commit()
-        return redirect ('/todo')
-    except:
-        return flash ('Error: could not delete a task')
+@myapp_obj.route('/delete_task/<task>', methods=['GET', 'POST'])
+def delete_task(task):
+    for todo in todos:
+        if todo['task'] == task:
+            todos.remove(todo)
+            break
+    return redirect(url_for('todo'))
+
 
 @myapp_obj.route ('/update/<int:id>', methods = ['GET', 'POST'])
 def update(id):
@@ -108,18 +102,22 @@ def update(id):
     else:
         return render_template('update.html', task = task, form=form,title=title)
 
-@myapp_obj.route('/start_chat', methods=['GET', 'POST'])
-@login_required
-def create_chat_room():
-    form = ChatRoomForm()
-    if form.validate_on_submit():
-        chat_room = ChatRoom(name=form.name.data)
-        db.session.add(chat_room)
-        db.session.commit()
-        flash('Chat room created successfully!')
-        return redirect(url_for('start_chat'))
+app = Flask(__name__)
+app.config['SECRET'] = "secret!123"
+socketio = SocketIO(app, cors_allowed_origins="*")
+@myapp_obj.route("/chat", methods=["GET", "POST"])
+def chat():
+    return render_template("chat.html")
 
-    return render_template('create_chat_room.html', form=form)
+@socketio.on('message')
+def handle_message(message):
+    print("Received message: " + message)
+    if message != "User connected!":
+        send(message, broadcast=True)
+
+if __name__ == "__routes__":
+    socketio.run(app, host="http://127.0.0.1:5000/chat")    
+
 
 @myapp_obj.route('/delete_chat/<room>', methods=['POST'])
 def delete_chat(room):
