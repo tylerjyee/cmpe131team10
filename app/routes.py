@@ -19,23 +19,21 @@ def home():
 
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
-    # create form
     form = LoginForm()
-    # if form inputs are valid
-    if form.validate_on_submit():
-        # search database for username
-        # user = User.query.filter_by(...)
-        user=User.query.filter_by(username=form.username.data).first()
-        # check the password and if password matches
-        if form.username.data==user.username and form.password.data==user.password:
-            # login_user(user)
-            #flash(f'Here are the input {form.username.data} and {form.password.data}')
-            return redirect(url_for('home'))
-        #if password doesn't match
-        else:
-            flash(f'Login unsuccessful for {form.username.data}. Please try again')
-            return redirect(url_for('login'))
-    return render_template('login.html', form=form)
+    try:
+        if form.validate_on_submit():
+            user = User.query.filter_by(username=form.username.data).first()
+            if form.username.data==user.username and form.password.data==user.password:
+                login_user(user)
+                return redirect(url_for('home'))
+            else:
+                flash('Invalid username or password.')
+    except Exception as e:
+        flash('Invalid username or password.')
+        
+    return render_template("login.html", form=form)
+
+
 
 @myapp_obj.route("/register", methods=['GET','POST'])
 def register():
