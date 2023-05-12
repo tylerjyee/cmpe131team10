@@ -172,7 +172,7 @@ def contact():
             flash('All fields required')
             return render_template('contacts.html', form=form)
         else:
-            return 'form posted'
+            return redirect(url_for('home'))
     elif request.method == 'GET':
         return render_template('contacts.html', form=form)
     
