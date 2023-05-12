@@ -2,12 +2,33 @@
 {%include "menubar.html" %}
 <html>
     <head>
-        <title>{{ title }} - my blog</title>
+        <title>{{ title }} Home</title>
+        <script>
+            function displayDateTime() {
+              var now = new Date();
+              var date = now.toDateString();
+              var time = now.toLocaleTimeString();
+        
+              // Update the HTML elements with the current date and time
+              document.getElementById('time').innerHTML = time;
+              document.getElementById('date').innerHTML =  date;
+            }
+        
+            // call displayDataTime() function and then update it every 1000 ms
+        displayDateTime();
+        setInterval(displayDateTime, 1000);
+            
+        </script>
     </head>
-    <body>
+    <body onload = "displayDateTime()">
         <li>THIS IS THE HOME PAGE</li>
         <p> Welcome to our website!!!<br>
             On this website, you are able to email and chat with other users</p>
+        <p><br></p>
+        <p>Current Date and Time</p>
+        
+        <p id="time"></p>
+        <p id="date"></p>
 
         {% block menubar%}
         {% endblock %}
