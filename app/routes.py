@@ -68,23 +68,20 @@ def unregister():
 
 @myapp_obj.route('/todo', methods=['GET', 'POST'])
 def todo():
-    #cretes to-do list form
     form = TodoForm()
     title = "To-Do List"
-    #trys to create a new task on todo lists
     if request.method == 'POST':
         task_content = request.form['taskname']
-        new_task = ToDoList(task_name = task_content)
+        new_task = ToDoList(task_name=task_content)
         try:
-            #adds new task
-            db.session.add (new_task)
+            db.session.add(new_task)
             db.session.commit()
-            return redirect('To-do List')
+            return redirect('/')
         except:
-            return flash ('Task could not be added')
-    else:
-        tasks = ToDoList.query.all()
-        return render_template ("todolist.html", tasks = tasks, form=form, title=title)
+            flash('Task could not be added')
+
+    tasks = ToDoList.query.all()
+    return render_template("todolist.html", tasks=tasks, form=form, title=title)
     
 @myapp_obj.route('/delete/<int:id>')
 def delete(id):
@@ -152,7 +149,7 @@ def compose():
             return render_template('compose.html', form=form)
         else:
             print('Email Sent')
-            return redirect('/email')
+            return redirect('/emails')
     elif request.method == 'GET':
         return render_template('compose.html', form=form)
 
