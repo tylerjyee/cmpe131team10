@@ -52,3 +52,8 @@ class ChatRoomForm(FlaskForm):
 
 class DeleteChatForm(FlaskForm):
     submit = SubmitField('Delete Chat')
+
+class EditProfile(FlaskForm):
+    username = StringField('New Username')
+    password = StringField('New Password')
+    submit = SubmitField('Submit Changes')

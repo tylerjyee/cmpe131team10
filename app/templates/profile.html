@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 {%include "menubar.html" %}
-<html>
-    <head>
-        <title>{{ title }} - my blog</title>
-    </head>
-    <body>
-        <li>Profile</li>
-        <p>idk how this works<br>
-            you can edit this tho</p>
-        {% block menubar%}
-        {% endblock %}
-    </body>
-</html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        body {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        .form {
+            margin-top: 10px;
+        }
+    </style>
+<head>
+
+<body>
+<h1>Edit User Profile</h1>
+{% for message in get_flashed_messages() %}
+    <p>{{ message }}</p>
+{% endfor %}
+
+
+<form class="form" action="" method="POST" novalidate>
+    {{form.hidden_tag()}}
+
+    <p> {{form.username.label}} <br>
+    {{form.username(size=35)}}</p>
+
+    <p> {{form.password.label}} <br>
+        {{form.password(size=35)}}</p>
+    
+
+    <p>{{form.submit(class="btn btn-primary")}}</p>
+</form>
+</body>
 
