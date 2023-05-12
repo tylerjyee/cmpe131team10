@@ -1,22 +1,25 @@
+<!-- todo.html -->
+
 <!DOCTYPE html>
-{%include "menubar.html" %}
+{% include "menubar.html" %}
 <html>
     <head>
-        <title>{{ title }} - my blog</title>
+        <title>Todo - my blog</title>
     </head>
     <body>
-        <form action="" method="POST" novalidate>
-             {{form.hidden_tag()}}
-         <p> {{form.todoitem.label}} <br>
-            {{form.todoitem(size=32)}}</p>
-
-         <p> {{form.text.label}} <br>
-            {{form.text(size=32)}}</p>
-
-        <p>{{form.cancel()}}</p>
-
+        <h1>Todo List</h1>
+        
+        <!-- Todo Form -->
+        <form action="{{ url_for('todo') }}" method="POST">
+            <input type="text" name="todo" placeholder="Enter a new task">
+            <input type="submit" value="Add Todo">
         </form>
-        {% block menubar%}
-        {% endblock %}
+        
+        <!-- Display Todos -->
+        <ul>
+            {% for todo in todos %}
+            <li>{{ todo.task }} <a href="{{ url_for('delete_task', task=todo.task) }}">Delete</a></li>
+            {% endfor %}
+        </ul>
     </body>
-</html> 
+</html>
