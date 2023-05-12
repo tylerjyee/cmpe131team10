@@ -68,43 +68,48 @@ todos = []
 
 @myapp_obj.route('/todo', methods=['GET', 'POST'])
 def todo():
+    # Add a new todo task
     if request.method == 'POST':
         todo_content = request.form.get('todo')
         if todo_content:
             todos.append({"task": todo_content, "done": False})
         return redirect(url_for('todo'))
 
+    # Render the todo template and pass the list of todos
     return render_template('todo.html', todos=todos)
     
 @myapp_obj.route('/delete_task/<task>', methods=['GET', 'POST'])
 def delete_task(task):
+    # Find and remove the specified task from the todos list
     for todo in todos:
         if todo['task'] == task:
             todos.remove(todo)
             break
     return redirect(url_for('todo'))
 
-
-@myapp_obj.route ('/update/<int:id>', methods = ['GET', 'POST'])
+@myapp_obj.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
     form = TodoForm()
     title = "Update Task"
     task = ToDoList.query.get_or_404(id)
     if request.method == 'POST':
+        # Update the task with the new task name
         task.task_name = request.form['task_name']
         try:
             db.session.commit()
-            return redirect ('/todo')
+            return redirect('/todo')
         except:
             return flash('Error: could not update a task')
     else:
-        return render_template('update.html', task = task, form=form,title=title)
+        return render_template('update.html', task=task, form=form, title=title)
 
 app = Flask(__name__)
 app.config['SECRET'] = "secret!123"
 socketio = SocketIO(app, cors_allowed_origins="*")
+
 @myapp_obj.route("/chat", methods=["GET", "POST"])
 def chat():
+    # Render the chat template
     return render_template("chat.html")
 
 @socketio.on('message')
@@ -114,29 +119,37 @@ def handle_message(message):
         send(message, broadcast=True)
 
 if __name__ == "__routes__":
-    socketio.run(app, host="http://127.0.0.1:5000/chat")    
+    socketio.run(app, host="http://127.0.0.1:5000/chat")
 
 notes_list = []
 
 @myapp_obj.route("/notes", methods=["GET", "POST"])
 def view_notes():
+    # View and add notes
     if request.method == "POST":
+        # Retrieve subject and note content from the form
         subject = request.form.get("subject")
         note_content = request.form.get("note")
         if subject and note_content:
+            # Create a note dictionary
             note = {"subject": subject, "content": note_content}
+            # Append the note to the notes list
             notes_list.append(note)
             flash("Note added successfully.")
             return redirect("/notes")
 
+    # Render the notes template and pass the notes list
     return render_template("notes.html", notes=notes_list)
+
 
 @myapp_obj.route("/notes/delete/<int:index>", methods=["POST"])
 def delete_note(index):
     if index < len(notes_list):
+        # Delete the note at the specified index from the notes list
         del notes_list[index]
         flash("Note deleted successfully.")
     return redirect(url_for('view_notes'))
+
 
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
