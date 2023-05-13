@@ -14,7 +14,7 @@
 <head>
 
 <body>
-<h1>Edit User Profile</h1>
+<h3>Edit User Profile</h3>
 {% for message in get_flashed_messages() %}
     <p>{{ message }}</p>
 {% endfor %}
@@ -30,7 +30,7 @@
         {{form.password(size=35)}}</p>
     
 
-    <p>{{form.submit(class="btn btn-primary")}}</p>
+    <p>{{form.submit(class="btn btn-primary btn-sm")}}</p>
 </form>
 </body>
 
