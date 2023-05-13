@@ -2,8 +2,8 @@ from flask import Flask, render_template, redirect, flash, url_for, request
 from flask_socketio import SocketIO, send
 
 
-from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, ChatRoomForm
-from .models import ChatRoom, User, ToDoList
+from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, EditProfile
+from .models import User, ToDoList, DeletedAccounts
 
 from app import myapp_obj, db
 from flask_login import current_user, login_user, logout_user, login_required
@@ -179,10 +179,11 @@ def contact():
             return redirect(url_for('home'))
     elif request.method == 'GET':
         return render_template('contacts.html', form=form)
-    
+
+""" 
 @myapp_obj.route("/profile")
 def profile():
-    return render_template('profile.html')
+    return render_template('profile.html')"""
 
 @myapp_obj.route("/forgotpw", methods=['GET','POST'])
 def forgotpw():
@@ -207,3 +208,29 @@ def forgotpw():
             flash(f'Not registed account! Please try again')
             return redirect(url_for('forgotpw'))
     return render_template('forgotpw.html', form=form)
+
+# Route that allows the user to edit the profile
+@myapp_obj.route('/profile', methods=['GET', 'POST'])
+@login_required
+def editprofile():
+    form = EditProfile()
+    current = User.query.filter_by(id=current_user.id).first()
+    # POST request "are used for form submissions"
+    # When user hits submit button
+    if form.validate_on_submit():
+        # Depending on which fields are not empty, change the user's data depending on which fields are not empty
+        if form.username.data != current:
+            current.username = form.username.data
+        elif form.username.data == current:
+            flash("Username already exists!")
+            return redirect(url_for('editprofile'))
+        if form.password.data != current:
+            current.password = form.password.data
+        elif form.password.data == current:
+            flash("Password already exists!")
+        # Commits changes to the database
+        db.session.commit()
+        flash(f'You have successfully updated {form.username.data} and {form.password.data}')
+        return redirect(url_for('home'))
+    print(current.username)
+    return render_template('profile.html', form=form)
