@@ -40,4 +40,11 @@ meeting schedule and team lead.
 - Tyler: Implemented all requirements from milestone 2. Working on looking into styling
 - Liza: Working on search email, delete email, flag email. Fixing edit user profile
 - Summarize group progress: Trying to finish up the website and all of its features
-### 2022-04-12 at 11:00
+### 2022-05-12 at 12:00
+- Physical Meeting, Everyone attended
+- Team updates: Working on getting everything working form milestone 3. Also looking at revising some stuff from the feedback recieved in milestone 2.
+- Taehun: Implemented a clock onto the home page and fixed errors with webpage
+- Phillip: Got the chat, todo and notes working.
+- Tyler: Working on styling for the entire page and specific things such as buttons and nav bar. Also implemented edit user profile
+- Liza: Working on fixing emails.
+- Summarize group progress: Finishing up website and making sure it is free of any errors.
