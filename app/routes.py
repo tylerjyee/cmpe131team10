@@ -154,6 +154,10 @@ def delete_note(index):
 @myapp_obj.route('/emails', methods = ['GET','POST'])
 def emails():
     return render_template('emails.html')
+
+@myapp_obj.route('/mailbox', methods = ['GET'])
+def mailbox():
+    return render_template('mailbox.html')
     
 @myapp_obj.route("/compose", methods = ['GET','POST'])
 def compose():
