@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, send
 
 
 from .forms import LoginForm, ContactForm, ComposeForm, RegisterForm, UnregisterForm, ForgotpwForm, TodoForm, EditProfile
-from .models import User, ToDoList, DeletedAccounts
+from .models import User, ToDoList
 
 from app import myapp_obj, db
 from flask_login import current_user, login_user, logout_user, login_required

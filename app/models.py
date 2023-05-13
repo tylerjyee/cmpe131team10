@@ -28,18 +28,6 @@ class ChatRoom(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, index=True)
 
-class DeletedAccounts(db.Model):
-    # Fields consisting of the id and username
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), nullable=False)
-
-    # Function to validate whether the username is unique (checks the deleted accounts table)
-    def validateUsername(username):
-        if DeletedAccounts.query.filter_by(username=username).first() == None:
-            return True
-        else:
-            return False
-
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
