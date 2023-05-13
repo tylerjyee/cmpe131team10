@@ -7,7 +7,7 @@
 6. Edit User Profile (Liza)
 7. Create todo list (Phillip)
 8. Start chat (Phillip)
-9. Delete chat (Phillip)
+9. Notes (Phillip)
 10. Forgot password (Taehun)
 11. Delete todo item/list (Taehun)
 12. Contact Form (Taehun)
@@ -135,24 +135,19 @@ a. System displays that email is empty
 - **Pre-condition:** user already signed in
 - **Trigger:** User selects "create todo list" button
 - **Primary Sequence:**
-1. User will select “create todo list”
+1. User will select “todo list”
 2. System prompts user to name list
 3. User will enter todo list name
 4. System prompt user to enter todo list item
 5. User will enter todo list item
 6. System prompts user to save todo item
 - **Primary Postconditions:** User will be able to see their created todo list
-7. System will order items based on sequential order
-8. User checks off item when done
+8. User can click on delete to remove finished task
 - **Alternate Sequence:**
 9. User doesn’t save todo item
-10. Prompt user todo item has not been saved
 - **Alternate Sequence:**
 11. User wants to add todo lists on to existing list
-12. Prompt user with edit list button
-- **Alternate Sequence:**
-13. User wants more than one todo list
-14. User is able to create a new list by hitting the "create todo list" again
+12. Prompt user with add button
 
 ### Use Case 8: Start chat
 - **Pre-condition:** user already signed in
@@ -167,27 +162,21 @@ a. System displays that email is empty
 7. User clicks send to send chat message
 - **Primary Postconditions:** User chat message is sent to other user
 - **Alternate Sequence:**
-8. User does not enter recipient
-9. system prompt user recipient has not been entered
-- **Alternate Sequence:**
-10. User does not enter any chat message
-11. Prompt user chat box is empty
+8. User does not enter any chat message
+9 Prompt user chat box is empty
 
-### Use Case 9: Delete Chat
-- **Pre-condition:** user has an existing chat
-- **Trigger:** click on "delete chat" button for respective chat
+### Use Case 9: Notes
+- **Pre-condition:** user is already signed in
+- **Trigger:** click on note button for notes application
 - **Primary Sequence:**
-1. User clicks on chat that they want to delete
-2. User clicks on "delete chat" button
-3. System prompts user that they are deleting chat and to confirm 
-4. User confirms by selecting yes
-- **Primary Postconditions:** User deletes chat
+1. User clicks on note in nav bar
+2. User clicks onto an empty field.
+3. User can input the subject of the note and the note itself
+4. User confirms by clicking on enter
+- **Primary Postconditions:** creates the notes
+1. User can click on delete note to delete it
 - **Alternate Sequence:**
-6. User does not have any existing chats
-7. Prompt user there are no chats can be deleted currently
-- **Alternate Sequence:**
-8. User doesn't confirm to delete chat
-9. Chat is not deleted
+6. Text field is empty
 
 ### Use Case 10: Forgot password
 - **Pre-condition:** User aleady signed up and have an existing account in the system
