@@ -153,7 +153,7 @@ a. System displays that email is empty
 - **Pre-condition:** user already signed in
 - **Trigger:** select "start chat" button
 - **Primary Sequence:**
-1. User will select "start chat"
+1. User will select "chat"
 2. system prompts the user to enter the recipient's name
 3. User enters recipient name
 4. System prompts user to enter short message to other user
@@ -176,7 +176,11 @@ a. System displays that email is empty
 - **Primary Postconditions:** creates the notes
 1. User can click on delete note to delete it
 - **Alternate Sequence:**
-6. Text field is empty
+1. Text field is empty
+2. prompts user to enter all required info
+- **Alternate Sequence:**
+3. User doesn't confirm by hitting enter
+4. prompts user note is not saved
 
 ### Use Case 10: Forgot password
 - **Pre-condition:** User aleady signed up and have an existing account in the system
@@ -193,7 +197,6 @@ a. System displays that email is empty
 1. User enters an incorrect username 
 2. System prompts user that the incorrect username is not found
 
-### Use Case 11: Add Contact
 ### Use Case 11: Delete Todo List
 - **Pre-condition:** User aleady signed up and have an existing account in the system
 - **Trigger:** Clicks "delete todo list/item"
