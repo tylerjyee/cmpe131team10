@@ -16,7 +16,7 @@ Communication is a big part of our world today since we normally work with other
 For our webpage we used Python 3, Flask, Flask Forms, Flask Login, SQL Alchemy, and HTML
 
 ### Instructions
-- First create an account or login
+- First create an account or login using your SJSU gmail
 - Once you create an account you will be brought to our home page
 - From the home page you can access features such as chat, email, contact us, todo list, delete account and logout via buttons on navigation bar
 - Each of the different features will bring you there specific webpage considing of different forms and inputs
