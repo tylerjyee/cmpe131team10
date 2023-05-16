@@ -13,13 +13,18 @@ When creating a website that is available for the public to use, it poses challe
 ### Implementation
 Communication is a big part of our world today since we normally work with other people. Our website allows a user to send and recieve emails within an internal system to other users. In order for a user to use our website, they would need to make an account and it would then give them access to our website. Besides sending snd recieving emails, the user is able to send chat messages and create a todo list.
 
-For our webpage we used Python 3, Flask, Flask Forms, Flask Login, SQL Alchemy, and HTML
+For our webpage we used Python 3, Flask, Flask Forms, Flask Login, SQL Alchemy, Bootstrap, SocketIO and HTML
 
 ### Instructions
-- First create an account or login
+- First create an account or login (this account is specifically for this page)
 - Once you create an account you will be brought to our home page
 - From the home page you can access features such as chat, email, contact us, todo list, delete account and logout via buttons on navigation bar
 - Each of the different features will bring you there specific webpage considing of different forms and inputs
+- Todo List allows you to enter a todo item. Then delete it when you want to remove it from the list
+- Mailbox requires you to sign into your SJSU gmail account. It will link your current email inbox into our website. From there you are able to compose email with the box on the bottom of the page.
+- With Chat, you can chat with another person by identifying the username of the other person and entering your message.
+- The notes feature allow you to take notes for temporary things. You can also delete these notes by pressing the red delete button.
+- You can also edit your profile by clicking on edit profile. It would allow you to change both your username and password to your local account if you wanted to.
 - Once you are done with using our webpage, you can logout of your account via the logout button
 - Upon logging out, the login page will appear
 - If you have account already and forgot your password, you can retreive your password by filling out the form in the login page
